@@ -1,0 +1,14 @@
+.volumenContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+
+  .volumenInput {
+    width: 20%;
+    height: 4px;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 0 #555;
+    transition: background 0.3s ease-in-out;
+  }
+}

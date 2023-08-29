@@ -1,0 +1,42 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.player {
+  flex: 5.5;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .volumePanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: flex-end;
+    width: 10%;
+
+    .volume {
+      appearance: slider-vertical;
+      height: 5rem;
+      cursor: pointer;
+    }
+    label {
+      &:hover {
+        color: orangered;
+        cursor: pointer;
+      }
+    }
+  }
+}

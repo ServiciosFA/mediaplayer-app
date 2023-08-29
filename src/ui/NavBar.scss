@@ -1,0 +1,91 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+.menuContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(243, 95, 41);
+  justify-content: center;
+  flex: 1;
+  align-items: center;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+  .settingsContainer {
+    flex: 2;
+    align-items: center;
+  }
+
+  .imgContainer {
+    flex: 2;
+    align-items: center;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .navContainer {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    font-size: medium;
+  }
+  .icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: max-content;
+    padding: 0.3rem;
+    border-radius: 3px;
+    @include latop {
+      padding: 0.2rem;
+      font-size: small;
+      font-weight: 200;
+    }
+
+    @include tablet {
+      padding: 0.1rem;
+      font-size: x-small;
+      font-weight: 100;
+    }
+    @include mobile {
+    }
+  }
+  .icon-active {
+    color: rgb(22, 68, 148);
+    background-color: rgba(223, 66, 9, 0.568);
+    font-weight: 600;
+    @include latop {
+      padding: 0.2rem;
+      font-size: small;
+      font-weight: 200;
+    }
+
+    @include tablet {
+      padding: 0.1rem;
+      font-size: x-small;
+      font-weight: 100;
+    }
+    @include mobile {
+    }
+  }
+}

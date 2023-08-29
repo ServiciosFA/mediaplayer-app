@@ -1,0 +1,94 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.listItem {
+  position: relative;
+  background-color: rgba(30, 78, 133, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 1rem;
+  border-radius: 10px;
+  gap: 1rem;
+  width: 12%;
+  height: 35%;
+  @include latop {
+    flex-direction: row;
+    width: 200px;
+    height: 100px;
+    justify-content: flex-start;
+  }
+  @include tablet {
+  }
+  @include mobile {
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    .containerPlay {
+      opacity: 1;
+    }
+  }
+
+  .images {
+    width: 80px;
+    height: 80px;
+    align-self: center;
+    @include latop {
+      width: 60px;
+      height: 60px;
+    }
+    @include tablet {
+      width: 50px;
+      height: 50px;
+    }
+    @include mobile {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  .itemDescription {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 5px;
+    h4 {
+      @include latop {
+        font-size: small;
+        font-weight: 400;
+      }
+      @include tablet {
+        font-size: small;
+      }
+      @include mobile {
+      }
+    }
+    .tracks {
+      font-size: smaller;
+      font-weight: 300;
+      color: silver;
+      @include latop {
+        font-size: x-small;
+      }
+      @include tablet {
+      }
+      @include mobile {
+      }
+    }
+  }
+}

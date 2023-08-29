@@ -1,0 +1,22 @@
+.formContainer {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+
+  .labelSearcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.3rem;
+    background-color: rgba(13, 43, 95, 0.836);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  .textSearcher {
+    background-color: rgba(46, 77, 131, 0.603);
+    color: white;
+    border-color: none;
+    border-radius: 5px;
+    padding: 0.3rem;
+  }
+}

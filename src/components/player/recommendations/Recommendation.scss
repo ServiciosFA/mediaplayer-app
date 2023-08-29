@@ -1,0 +1,145 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.recommendations {
+  background-color: rgba(31, 50, 83, 0.596);
+  border-radius: 10px;
+  flex-wrap: nowrap;
+  padding: 2rem;
+  display: flex;
+  height: 100%;
+  justify-content: flex-start;
+  gap: 1rem;
+  white-space: nowrap;
+  max-width: 100%;
+  @include latop {
+    display: none;
+  }
+
+  @include tablet {
+  }
+  @include mobile {
+  }
+
+  .recommendedList {
+    background-color: rgba(31, 50, 83, 0.76);
+    flex: 4.5;
+    padding: 1rem;
+    border-radius: 10px;
+    white-space: nowrap;
+    display: flex;
+    overflow-x: hidden;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    &:hover {
+      .recommendTitle {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .containerPlay {
+          color: rgb(26, 61, 102);
+          background-color: rgba(236, 87, 33, 0.959);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0.05rem;
+          position: absolute;
+          top: 0;
+          right: 0;
+          opacity: 1;
+          border-bottom-left-radius: 50%;
+          cursor: pointer;
+        }
+      }
+    }
+    .recommendTitle {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      .containerPlay {
+        color: rgb(26, 61, 102);
+        background-color: rgba(236, 87, 33, 0.959);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.05rem;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
+      }
+      .forListen {
+        color: silver;
+        font-size: smaller;
+        font-weight: 100;
+
+        word-wrap: break-word;
+      }
+      .forRecommend {
+        font-size: smaller;
+        font-weight: 100;
+        word-wrap: break-word;
+      }
+    }
+    .recommendedItem {
+      padding-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      overflow-x: hidden;
+
+      .description {
+        overflow-x: hidden;
+
+        .song {
+          font-size: small;
+          font-weight: 300;
+          animation: songrec 12s linear infinite;
+        }
+        .artists {
+          font-size: smaller;
+          font-weight: 100;
+          color: silver;
+          animation: songrec 12s linear infinite;
+        }
+      }
+
+      @keyframes songrec {
+        0% {
+          transform: translateX(0);
+        }
+
+        50% {
+          transform: translateX(-80%);
+        }
+        80% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      img {
+        width: 20%;
+        height: 20%;
+        border-radius: 5px;
+      }
+    }
+  }
+}

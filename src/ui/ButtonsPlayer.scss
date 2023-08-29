@@ -1,0 +1,46 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.buttonsActions {
+  flex: 0.5;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: space-around;
+  .button {
+    color: silver;
+    &:hover {
+      cursor: pointer;
+
+      color: white;
+    }
+  }
+  .buttonActive {
+    color: rgb(253, 133, 90);
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+    }
+  }
+  .buttonPlay {
+    color: white;
+    background-color: rgb(253, 133, 90);
+    border-radius: 50%;
+    &:hover {
+      cursor: pointer;
+      scale: 1.1;
+    }
+  }
+}

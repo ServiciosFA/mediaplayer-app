@@ -1,0 +1,80 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.favItem {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 5px;
+  background-color: rgba(46, 77, 131, 0.308);
+  color: rgb(253, 133, 90);
+  width: 70%;
+  &:hover {
+    background-color: rgba(72, 117, 194, 0.308);
+  }
+  .favName {
+    align-items: center;
+    display: flex;
+    gap: 5%;
+    width: 90%;
+
+    .favNum {
+      width: 3%;
+    }
+    .favImages {
+      width: 12%;
+      height: 80%;
+      @include latop {
+      }
+
+      @include tablet {
+        display: none;
+      }
+      @include mobile {
+      }
+    }
+    .favTrack {
+      font-size: large;
+      font-weight: 300;
+      @include latop {
+        font-size: medium;
+        font-weight: 300;
+      }
+
+      @include tablet {
+        font-size: small;
+        font-weight: 300;
+      }
+      @include mobile {
+        font-size: smaller;
+      }
+    }
+    .favArtist {
+      font-size: large;
+      font-weight: 600;
+      @include latop {
+        font-size: medium;
+      }
+
+      @include tablet {
+        font-size: small;
+      }
+      @include mobile {
+        font-size: smaller;
+      }
+    }
+  }
+}

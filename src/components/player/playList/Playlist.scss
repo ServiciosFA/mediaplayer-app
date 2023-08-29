@@ -1,0 +1,33 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.playListContainer {
+  background-color: rgba(78, 131, 223, 0.616);
+  flex: 4;
+  border-radius: 10px;
+  padding: 0.5rem;
+  overflow-y: scroll;
+  width: 90%;
+  max-width: 100%;
+  @include latop {
+    height: 100%;
+  }
+
+  @include tablet {
+  }
+  @include mobile {
+  }
+}

@@ -1,0 +1,59 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+.libraryContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-y: scroll;
+  .listContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    padding-right: 0.2rem;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-content: flex-start;
+
+    @include latop {
+      flex-direction: column;
+    }
+
+    @include tablet {
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    @include mobile {
+    }
+
+    .containerPlay {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      opacity: 0;
+      background-color: rgb(253, 133, 90);
+      color: rgba(33, 64, 99);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s ease;
+    }
+  }
+}

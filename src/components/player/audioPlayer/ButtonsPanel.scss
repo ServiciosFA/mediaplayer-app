@@ -1,0 +1,61 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+.buttonsContainer {
+  flex: 5;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  @include latop {
+  }
+  @include tablet {
+  }
+  @include mobile {
+  }
+  .album {
+    font-size: large;
+    font-weight: 500;
+    display: inline-block;
+    align-items: center;
+    word-wrap: break-word;
+    flex: 0.7;
+
+    @include latop {
+      font-size: medium;
+      font-weight: 300;
+    }
+    @include tablet {
+    }
+    @include mobile {
+    }
+  }
+  .track {
+    flex: 1;
+    font-size: medium;
+    font-weight: 300;
+    align-items: center;
+    @include latop {
+      font-size: small;
+      font-weight: 300;
+    }
+    @include tablet {
+    }
+    @include mobile {
+    }
+  }
+}

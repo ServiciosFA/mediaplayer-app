@@ -1,0 +1,40 @@
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+@mixin latop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+.progressiveCircleContainer {
+  flex: 5;
+  @include latop {
+  }
+
+  @include tablet {
+    display: none;
+  }
+  @include mobile {
+  }
+}
+
+.imageActive {
+  animation: rotation 30s infinite ease-in-out;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
