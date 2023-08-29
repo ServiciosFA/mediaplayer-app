@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const authEndpoint = "https://accounts.spotify.com/authorize?";
-const clientId = "367ea4ca15a64c5597de192eb4075c8e";
+//Crear un usuario en la API SPOTIFY y cambiar valor de ID
+const clientId = "ID_CLIENT_SPOTIFYAPP";
 const redirectUri = "http://localhost:3000/";
 const scopes =
   "user-read-playback-state user-library-read playlist-read-private user-modify-playback-state user-follow-read user-library-modify user-top-read";
