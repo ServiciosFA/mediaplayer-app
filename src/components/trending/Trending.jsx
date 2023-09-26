@@ -1,27 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Trending.scss";
-import apiClient from "../../spotify";
 import TrendingItem from "./TrendingItem";
+import useDataRequest from "../../hook/useDataRequest";
 
 const Trending = () => {
-  const [trending, setTrending] = useState([]);
-  const [loading, setLoading] = useState(true);
-
   //Busqueda de listas recomendadas de spotify
-  useEffect(() => {
-    const trendingRequest = async () => {
-      try {
-        setLoading(true);
-        const response = await apiClient.get("browse/featured-playlists");
-        setTrending(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    trendingRequest();
-  }, []);
-
+  const { data: trending, loading } = useDataRequest(
+    "browse/featured-playlists"
+  );
   return (
     <>
       {!loading && (

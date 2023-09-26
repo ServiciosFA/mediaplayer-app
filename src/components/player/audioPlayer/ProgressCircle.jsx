@@ -1,6 +1,7 @@
 import React from "react";
 import "./ProgressCircle.scss";
 import { useSelector } from "react-redux";
+import logo from "../../../assets/spotifyIcon.jpg";
 
 const Circle = ({ color, percentage, size, strokeWidth }) => {
   const radius = size / 2 - strokeWidth / 2;
@@ -31,7 +32,8 @@ const Circle = ({ color, percentage, size, strokeWidth }) => {
 
 const ProgressCircle = () => {
   const timer = useSelector((state) => state.timer);
-  const image = useSelector((state) => state.currentTrack?.imgUrl);
+  const image = useSelector((state) => state.currentTrack.imgUrl);
+
   return (
     <div className="progressiveCircleContainer">
       <svg width={"350px"} height={"350px"}>
@@ -65,7 +67,7 @@ const ProgressCircle = () => {
           y={125}
           width={100}
           height={100}
-          href={image}
+          href={image ? image : logo}
           clipPath="url(#myInnerCircle)"
         />
       </svg>

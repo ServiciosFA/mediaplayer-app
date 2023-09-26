@@ -62,7 +62,7 @@ const Player = () => {
   return (
     <>
       {!location.state && !currentTrack.name ? (
-        <Navigate to="/"></Navigate>
+        <Navigate to="/library"></Navigate>
       ) : loading && !currentTrack ? (
         <div>Loading</div>
       ) : (

@@ -17,6 +17,8 @@ import LocationInfo from "./hook/useToken";
 import { useSelector } from "react-redux";
 import RefreshToken from "./hook/useRefreshToken";
 
+import Home from "./pages/HomePage";
+
 function App() {
   const token = useSelector((state) => state.token);
 
@@ -38,6 +40,14 @@ function App() {
             <Route path="/signin" element={<Signin></Signin>}></Route>
             <Route path="/login" element={<Login></Login>}></Route>
             <Route
+              path="/"
+              element={
+                <ProtectedRoute>
+                  <Home></Home>
+                </ProtectedRoute>
+              }
+            ></Route>
+            <Route
               path="/trending"
               element={
                 <ProtectedRoute>
@@ -46,7 +56,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="/"
+              path="/library"
               element={
                 <ProtectedRoute>
                   <Library></Library>

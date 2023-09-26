@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./NavBar.scss";
 import { NavLink } from "react-router-dom";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
@@ -7,19 +7,11 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import avatar from "../assets/avatar.jpg";
 import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
-import apiClient from "../spotify";
 import { useSelector } from "react-redux";
+import HomeIcon from "@mui/icons-material/Home";
 
 const NavBar = () => {
-  const [image, setImage] = useState(avatar);
-  const log = useSelector((state) => state.token);
-
-  useEffect(() => {
-    if (log?.accessToken)
-      apiClient.get("me").then((response) => {
-        setImage(response.data.images[0].url);
-      });
-  }, [log]);
+  const user = useSelector((state) => state.currentUser);
 
   const active = ({ isActive, isPending }) =>
     isPending ? "" : isActive ? "icon-active icons" : "icons";
@@ -27,10 +19,14 @@ const NavBar = () => {
   return (
     <div className="menuContainer">
       <NavLink to="/login" className="imgContainer">
-        <img src={image} alt="imagen"></img>
+        <img src={user?.id ? user.images[0].url : avatar} alt="imagen"></img>
       </NavLink>
 
       <div className="navContainer">
+        <NavLink to="/" className={active}>
+          <HomeIcon fontSize="medium"></HomeIcon>
+          <p>Home</p>
+        </NavLink>
         <NavLink to="/trending" className={active}>
           <LocalFireDepartmentIcon fontSize="medium"></LocalFireDepartmentIcon>
           <p>Trending</p>
@@ -43,7 +39,7 @@ const NavBar = () => {
           <FavoriteIcon fontSize="medium"></FavoriteIcon>
           <p>Favorites</p>
         </NavLink>
-        <NavLink to="/" className={active}>
+        <NavLink to="/library" className={active}>
           <LibraryMusicIcon fontSize="medium"></LibraryMusicIcon>
           <p>Library</p>
         </NavLink>

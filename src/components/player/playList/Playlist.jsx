@@ -40,7 +40,6 @@ const Playlist = (props) => {
         })
       );
     };
-
     return currentTrack.tracks?.map((track, i) => {
       const showTrack = track?.track ? track.track : track;
 

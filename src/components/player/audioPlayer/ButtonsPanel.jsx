@@ -111,6 +111,7 @@ const ButtonsPanel = () => {
           duracion={!audioRef.current?.duration ? 0 : audioRef.current.duration}
           percentage={percentage}
           onPercentage={setPercentages}
+          time={audioRef.currentTime}
         ></BarProgress>
       )}
       <Volumen audioRef={audioRef} set></Volumen>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Recommendation.scss";
 import APIKit from "../../../spotify";
-import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { currentTrackActions } from "../../../store/currentTrackSlice";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -22,76 +21,63 @@ const Recommendation = () => {
     return Math.floor(Math.random() * max);
   }
 
-  const location = useLocation();
-
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
-        if (tracks && tracks.length > 0 && loading) {
-          setLoading(true);
-          setError(null);
-          const idArtist = getRandomInt(3);
-          const idTrack1 = getRandomInt(3);
-          const idTrack2 = getRandomInt(3);
-          let artistsRandomId;
-          let trackRandomId1;
-          let trackRandomId2;
-          if (tracks[idArtist]?.track) {
-            artistsRandomId = tracks[idArtist]?.track?.artists[0]?.id;
-            trackRandomId1 = tracks[idTrack1]?.track?.id;
-            trackRandomId2 = tracks[idTrack2]?.track?.id;
-          } else {
-            artistsRandomId = tracks[idArtist]?.artists[0]?.id;
-            trackRandomId1 = tracks[idTrack1]?.id;
-            trackRandomId2 = tracks[idTrack2]?.id;
-          }
-          const [artistResponse, track1Response, track2Response] =
-            await Promise.all([
-              APIKit.get("recommendations?seed_artists=" + artistsRandomId),
-              APIKit.get("recommendations?seed_tracks=" + trackRandomId1),
-              APIKit.get("recommendations?seed_tracks=" + trackRandomId2),
-            ]);
-
-          if (tracks[idArtist]?.track) {
-            setRecommendations({
-              artist: {
-                type: artistResponse.data?.seeds[0]?.type,
-                forListen: tracks[idArtist]?.track.artists[0].name,
-                listRecomend: artistResponse.data?.tracks,
-              },
-              track1: {
-                type: track1Response.data?.seeds[0]?.type,
-                forListen: tracks[idTrack1]?.track.name,
-                listRecomend: track1Response.data?.tracks,
-              },
-              track2: {
-                type: track2Response.data?.seeds[0]?.type,
-                forListen: tracks[idTrack2]?.track.name,
-                listRecomend: track2Response.data?.tracks,
-              },
-            });
-          } else {
-            setRecommendations({
-              artist: {
-                type: artistResponse.data?.seeds[0]?.type,
-                forListen: tracks[idArtist]?.artists[0].name,
-                listRecomend: artistResponse.data?.tracks,
-              },
-              track1: {
-                type: track1Response.data?.seeds[0]?.type,
-                forListen: tracks[idTrack1]?.name,
-                listRecomend: track1Response.data?.tracks,
-              },
-              track2: {
-                type: track2Response.data?.seeds[0]?.type,
-                forListen: tracks[idTrack2]?.name,
-                listRecomend: track2Response.data?.tracks,
-              },
-            });
-          }
-
-          setLoading(false);
+        if (!tracks || tracks.length === 0 || !loading) {
+          return;
         }
+
+        setLoading(true);
+        setError(null);
+
+        const randomIndexes = Array.from({ length: 3 }, () =>
+          getRandomInt(tracks.length)
+        );
+        const seedArtists = tracks[randomIndexes[0]]?.track
+          ? tracks[randomIndexes[0]]?.track?.artists[0]?.id
+          : tracks[randomIndexes[0]]?.artists[0]?.id;
+
+        const seedTracks = tracks[randomIndexes[1]]?.track?.id
+          ? [
+              tracks[randomIndexes[1]]?.track?.id,
+              tracks[randomIndexes[2]]?.track?.id,
+            ]
+          : [tracks[randomIndexes[1]]?.id, tracks[randomIndexes[2]]?.id];
+
+        const [artistResponse, track1Response, track2Response] =
+          await Promise.all([
+            APIKit.get("recommendations?seed_artists=" + seedArtists),
+            APIKit.get("recommendations?seed_tracks=" + seedTracks[0]),
+            APIKit.get("recommendations?seed_tracks=" + seedTracks[1]),
+          ]);
+
+        const recommendationsData = {
+          artist: {
+            type: artistResponse.data?.seeds[0]?.type,
+            forListen: tracks[randomIndexes[0]]?.track
+              ? tracks[randomIndexes[0]]?.track.artists[0].name
+              : tracks[randomIndexes[0]]?.artists[0]?.name,
+            listRecomend: artistResponse.data?.tracks,
+          },
+          track1: {
+            type: track1Response.data?.seeds[0]?.type,
+            forListen:
+              tracks[randomIndexes[1]]?.track?.name ||
+              tracks[randomIndexes[1]]?.name,
+            listRecomend: track1Response.data?.tracks,
+          },
+          track2: {
+            type: track2Response.data?.seeds[0]?.type,
+            forListen:
+              tracks[randomIndexes[2]]?.track?.name ||
+              tracks[randomIndexes[2]]?.name,
+            listRecomend: track2Response.data?.tracks,
+          },
+        };
+
+        setRecommendations(recommendationsData);
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -100,7 +86,7 @@ const Recommendation = () => {
     };
 
     fetchRecommendations();
-  }, [tracks, location, loading, recommendations]);
+  }, [tracks, loading]);
 
   const recommendedHandler = (value) => {
     dispatch(

@@ -1,51 +1,31 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./Library.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { currentTrackActions } from "../../store/currentTrackSlice";
-import apiClient from "../../spotify";
 import SearchBar from "../../ui/SearchBar";
 import LibraryItem from "./LibraryItem";
+import useDataRequest from "../../hook/useDataRequest";
 
 const Library = () => {
-  const [playlists, setPlaylist] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [searcher, setSearcher] = useState("");
 
-  const filterPlaylists = useMemo(() => {
-    return playlists.filter((playlist) =>
-      playlist.name.toLowerCase().includes(searcher.toLowerCase())
-    );
-  }, [playlists, searcher]);
-
   //peticion de las lista del usuario
-  useEffect(() => {
-    const loadPlaylists = async () => {
-      try {
-        setLoading(true);
-        const response = await apiClient.get("me/playlists");
+  const { data: playlists, loading, error } = useDataRequest("me/playlists");
 
-        if (!response) throw new Error("Bad request");
-        const data = response.data.items;
-
-        setPlaylist(data);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    loadPlaylists();
-  }, []);
+  const filterPlaylists = useMemo(() => {
+    return !loading
+      ? playlists.items.filter((playlist) =>
+          playlist.name.toLowerCase().includes(searcher.toLowerCase())
+        )
+      : [];
+  }, [loading, playlists?.items, searcher]);
 
   //Selecciona la lista-redirige a player con el id de la lista
   const playListHandler = (listId) => {
-    dispatch(currentTrackActions.SET_LIST_TRACK(playlists));
+    dispatch(currentTrackActions.SET_LIST_TRACK(playlists.items));
     navigate("/player", { state: { id: listId } });
   };
 

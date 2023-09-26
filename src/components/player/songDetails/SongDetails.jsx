@@ -10,6 +10,10 @@ const SongDetails = (props) => {
   const [like, setLike] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  //API spotify no siempre devuelve los detalles de las tracks cuando los guardo en store
+  const hasDetail = currentTrack.releaseDate && currentTrack.artist;
+  console.log(currentTrack.imgUrl);
+
   useEffect(() => {
     try {
       setLoading(true);
@@ -50,26 +54,28 @@ const SongDetails = (props) => {
       <div className="imageContainer">
         <img src={currentTrack?.imgUrl} alt="Imagen Album"></img>
       </div>
-      <div className="descriptionContainer">
-        <div className="artistItem">
-          <h4 className="marquee">{currentTrack?.artist}</h4>
-          {!loading && like ? (
-            <FavoriteIcon
-              onClick={onLikeHandler}
-              className="like"
-            ></FavoriteIcon>
-          ) : (
-            <FavoriteBorderOutlinedIcon
-              onClick={onLikeHandler}
-              className="unLike"
-            ></FavoriteBorderOutlinedIcon>
-          )}
+      {hasDetail && (
+        <div className="descriptionContainer">
+          <div className="artistItem">
+            <h4 className="marquee">{currentTrack?.artist}</h4>
+            {!loading && like ? (
+              <FavoriteIcon
+                onClick={onLikeHandler}
+                className="like"
+              ></FavoriteIcon>
+            ) : (
+              <FavoriteBorderOutlinedIcon
+                onClick={onLikeHandler}
+                className="unLike"
+              ></FavoriteBorderOutlinedIcon>
+            )}
+          </div>
+          <div className="descriptionDate">
+            <p>Release Date: </p>
+            <p>{currentTrack?.releaseDate}</p>
+          </div>
         </div>
-        <div className="descriptionDate">
-          <p>Release Date: </p>
-          <p>{currentTrack?.releaseDate}</p>
-        </div>
-      </div>
+      )}
     </div>
   );
 };
