@@ -12,7 +12,6 @@ const SongDetails = (props) => {
 
   //API spotify no siempre devuelve los detalles de las tracks cuando los guardo en store
   const hasDetail = currentTrack.releaseDate && currentTrack.artist;
-  console.log(currentTrack.imgUrl);
 
   useEffect(() => {
     try {

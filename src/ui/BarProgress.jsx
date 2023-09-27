@@ -1,17 +1,17 @@
 import React from "react";
 import "./BarProgress.scss";
-import { useSelector } from "react-redux";
 
-const BarProgress = ({ onPercentage, percentage, duracion }) => {
-  const time = useSelector((state) => state.timer);
+const BarProgress = ({ onPercentage, percentage, duracion, time }) => {
   const minutes = duracion ? Math.floor(duracion / 60) : 0;
   const seconds = duracion ? Math.floor(duracion % 60) : 0;
 
   const renderTimer = () => {
-    const seconds =
-      time.timer.seconds < 10 ? "0" + time.timer.seconds : time.timer.seconds;
-    const minutes =
-      time.timer.minutes < 10 ? "0" + time.timer.minutes : time.timer.minutes;
+    let seconds = Math.floor(time % 60);
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    let minutes = Math.floor(time / 60);
+
+    if (minutes < 10) minutes = "0" + minutes;
+
     return <p>{minutes + ":" + seconds}</p>;
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 import "./Favorite.scss";
 import time from "../../functions/Time";
 import { currentTrackActions } from "../../store/currentTrackSlice";
