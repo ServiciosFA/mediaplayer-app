@@ -16,10 +16,14 @@ const NavBar = () => {
   const active = ({ isActive, isPending }) =>
     isPending ? "" : isActive ? "icon-active icons" : "icons";
 
+  console.log(user);
   return (
     <div className="menuContainer">
       <NavLink to="/login" className="imgContainer">
-        <img src={user?.id ? user.images[0].url : avatar} alt="imagen"></img>
+        <img
+          src={user?.id && user?.images[0]?.url ? user?.images[0].url : avatar}
+          alt="imagen"
+        ></img>
       </NavLink>
 
       <div className="navContainer">
