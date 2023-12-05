@@ -47,7 +47,7 @@ const Login = () => {
     <div className="loginContainer">
       <div className="imgContainer">
         <img
-          src={user?.id ? user.images[0].url : logo}
+          src={user?.id && user?.images[0]?.url ? user.images[0].url : logo}
           alt=""
           className="logo"
         ></img>
