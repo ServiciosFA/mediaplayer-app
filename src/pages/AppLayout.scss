@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-@import "../styles/mixins.scss";
-
-.layout {
-  display: flex;
-  max-height: 100vh;
-  height: 100vh;
-  overflow: hidden;
-}
-.pagesContainer {
-  flex: 11;
-}
-=======
 .layout {
   display: flex;
   max-height: 100vh;
@@ -37,4 +24,3 @@
     );
   background-blend-mode: multiply;
 }
->>>>>>> 805ca04de9f2543c83cf36a9994dc34056352e95
