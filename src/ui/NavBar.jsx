@@ -20,12 +20,13 @@ const NavBar = () => {
     <div className="menuContainer">
       <NavLink to="/login" className="imgContainer">
         <img
-         
-          src={user?.id && user?.images[0]?.url && user?.images[0]?.url ? user??.images[0].url : avatar}
-         
+          src={
+            user?.id && user?.images[0]?.url && user?.images[0]?.url
+              ? user?.images[0].url
+              : avatar
+          }
           alt="imagen"
           className="imageUsr"
-        
         ></img>
       </NavLink>
 
