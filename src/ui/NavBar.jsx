@@ -15,7 +15,7 @@ const NavBar = () => {
   const active = ({ isActive, isPending }) =>
     isPending ? "" : isActive ? "icon-active icons" : "icons";
 
-  console.log(user);
+
   return (
     <div className="menuContainer">
       <NavLink to="/login" className="imgContainer">
