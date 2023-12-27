@@ -1,27 +1,16 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../../styles/mixins.scss";
+
 .progressiveCircleContainer {
-  flex: 5;
-  @include latop {
+  width: 340px;
+
+  @include responsive(laptop) {
   }
 
-  @include tablet {
+  @include responsive(tablet) {
     display: none;
   }
-  @include mobile {
+  @include responsive(phone) {
+    display: none;
   }
 }
 

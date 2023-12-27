@@ -6,7 +6,6 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import avatar from "../assets/avatar.jpg";
-import SettingsSharpIcon from "@mui/icons-material/SettingsSharp";
 import { useSelector } from "react-redux";
 import HomeIcon from "@mui/icons-material/Home";
 
@@ -19,7 +18,11 @@ const NavBar = () => {
   return (
     <div className="menuContainer">
       <NavLink to="/login" className="imgContainer">
-        <img src={user?.id ? user.images[0].url : avatar} alt="imagen"></img>
+        <img
+          src={user?.id && user?.images[0]?.url ? user?.images[0].url : avatar}
+          alt="imagen"
+          className="imageUsr"
+        ></img>
       </NavLink>
 
       <div className="navContainer">
@@ -44,10 +47,6 @@ const NavBar = () => {
           <p>Library</p>
         </NavLink>
       </div>
-      <NavLink to="/settings" className="icons">
-        <SettingsSharpIcon fontSize="medium"></SettingsSharpIcon>
-        <p>Settings</p>
-      </NavLink>
     </div>
   );
 };

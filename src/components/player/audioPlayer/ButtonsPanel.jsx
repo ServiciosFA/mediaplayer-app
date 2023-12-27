@@ -6,6 +6,10 @@ import BarProgress from "../../../ui/BarProgress";
 import { currentTrackActions } from "../../../store/currentTrackSlice";
 import { timerSliceActions } from "../../../store/timerSilce";
 import Volumen from "./Volumen";
+import {
+  updatePercentagexTime,
+  updateTimexPercentage,
+} from "../../../functions/timerUtils";
 
 const ButtonsPanel = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
@@ -27,24 +31,7 @@ const ButtonsPanel = () => {
   }, [play, currentTrack, dispatch, audioRef]);
 
   const handleTimeUpdate = () => {
-    const audioElement = audioRef.current;
-    // Actualizar el estado de tiempo basado en el audio
-    const currentTime = audioElement.currentTime;
-    const totalTime = audioElement.duration;
-    if (!isNaN(totalTime) && totalTime !== 0) {
-      const percetaje = Math.floor((currentTime / totalTime) * 100);
-      setPercentage(percetaje);
-      dispatch(
-        timerSliceActions.SET_TIMER({
-          timer: {
-            minutes: Math.floor(currentTime / 60),
-            seconds: Math.floor(currentTime % 60),
-          },
-          totalTime,
-          trackPercentage: percentage,
-        })
-      );
-    }
+    updatePercentagexTime(audioRef, setPercentage, dispatch, percentage);
   };
 
   //Establecer funciones de los botones del reproductor
@@ -68,22 +55,7 @@ const ButtonsPanel = () => {
 
   //establece el tiempo al audio segun el porcentaje-actualiza datos en store
   const setPercentages = (value) => {
-    setPercentage(value);
-    const audioElement = audioRef.current;
-    const totalTime = audioElement.duration;
-    const currentTime = (value / 100) * totalTime;
-    audioElement.currentTime = currentTime;
-
-    dispatch(
-      timerSliceActions.SET_TIMER({
-        timer: {
-          minutes: Math.floor(currentTime / 60),
-          seconds: Math.floor(currentTime % 60),
-        },
-        totalTime,
-        trackPercentage: percentage,
-      })
-    );
+    updateTimexPercentage(value, setPercentage, audioRef, dispatch, percentage);
   };
   return (
     <div className="buttonsContainer">

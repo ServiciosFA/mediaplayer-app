@@ -1,18 +1,4 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../styles/mixins.scss";
 
 .barContainer {
   display: flex;
@@ -20,12 +6,35 @@
   justify-content: center;
   flex: 1;
   gap: 1rem;
-
   width: 100%;
+  @include responsive(desktop) {
+    gap: 1rem;
+  }
+  @include responsive(laptop) {
+    gap: 0.8rem;
+  }
+  @include responsive(tablet) {
+    gap: 0.7rem;
+  }
+  @include responsive(phone) {
+    gap: 0.5rem;
+  }
   .bar {
     border-radius: 3px;
     width: 200px;
     height: 10px;
     background-color: rgb(46, 77, 131);
+    @include responsive(desktop) {
+      width: 200px;
+    }
+    @include responsive(laptop) {
+      width: 190px;
+    }
+    @include responsive(tablet) {
+      width: 180px;
+    }
+    @include responsive(phone) {
+      width: 130px;
+    }
   }
 }

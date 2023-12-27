@@ -1,31 +1,23 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../../styles/mixins.scss";
 .buttonsContainer {
-  flex: 5;
+  width: 20rem;
+  max-width: 100%;
   height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 0.3rem;
-  @include latop {
+
+  @include responsive(laptop) {
+    width: 19rem;
   }
-  @include tablet {
+  @include responsive(tablet) {
+    width: 17rem;
   }
-  @include mobile {
+  @include responsive(phone) {
+    width: 12rem;
+    gap: 0.1rem;
   }
   .album {
     font-size: large;
@@ -35,13 +27,17 @@
     word-wrap: break-word;
     flex: 0.7;
 
-    @include latop {
+    @include responsive(laptop) {
       font-size: medium;
       font-weight: 300;
     }
-    @include tablet {
+    @include responsive(tablet) {
+      font-size: medium;
+      font-weight: 300;
     }
-    @include mobile {
+    @include responsive(phone) {
+      font-size: medium;
+      font-weight: 300;
     }
   }
   .track {
@@ -49,13 +45,17 @@
     font-size: medium;
     font-weight: 300;
     align-items: center;
-    @include latop {
+    @include responsive(laptop) {
       font-size: small;
       font-weight: 300;
     }
-    @include tablet {
+    @include responsive(tablet) {
+      font-size: small;
+      font-weight: 300;
     }
-    @include mobile {
+    @include responsive(phone) {
+      font-size: small;
+      font-weight: 300;
     }
   }
 }

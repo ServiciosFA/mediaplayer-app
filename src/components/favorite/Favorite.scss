@@ -1,23 +1,10 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../styles/mixins.scss";
 .favoriteContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  justify-content: flex-start;
   overflow-y: scroll;
 
   .favList {

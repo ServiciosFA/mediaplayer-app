@@ -1,93 +1,93 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../styles/mixins.scss";
 
 .playerContainer {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
   height: 100%;
-  flex: 8;
-  background-color: rgb(46, 77, 131);
-  overflow-y: hidden;
-  background-image: radial-gradient(
-      circle at center center,
-      rgba(33, 64, 99),
-      rgba(30, 35, 44)
-    ),
-    repeating-radial-gradient(
-      circle at center center,
-      rgba(33, 64, 99, 1),
-      rgba(33, 64, 99, 1),
-      40px,
-      transparent 80px,
-      transparent 40px
-    );
-  background-blend-mode: multiply;
-
-  @include latop {
+  width: 100%;
+  @include responsive(desktop) {
+  }
+  @include responsive(laptop) {
     flex-direction: column;
-    height: 100%;
-    flex: 1;
+    gap: 0;
   }
 
-  @include tablet {
+  @include responsive(tablet) {
+    flex-direction: column;
+    gap: 0;
   }
-  @include mobile {
+  @include responsive(phone) {
+    flex-direction: column;
+    gap: 0;
   }
 
   .leftContainer {
-    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: space-around;
-    width: 50%;
-    padding: 5rem;
+    padding: 2rem;
     height: 100%;
-    @include latop {
+    flex: 4;
+
+    @include responsive(laptop) {
       flex-direction: row;
-      flex: 2;
+      justify-content: center;
+      align-content: center;
       width: 100%;
-      height: 50%;
+      max-height: 50%;
     }
 
-    @include tablet {
+    @include responsive(tablet) {
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+
+      width: 100%;
+      max-height: 50%;
     }
-    @include mobile {
+    @include responsive(phone) {
+      flex-direction: row;
+      justify-content: center;
+      align-content: center;
+
+      width: 100%;
+      max-height: 50%;
     }
   }
   .rightContainer {
-    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 1rem;
     gap: 1rem;
     height: 100%;
-    @include latop {
+    flex: 3;
+    @include responsive(laptop) {
       flex-direction: row;
-      flex: 1;
-      height: 50%;
+      justify-content: center;
+      align-content: center;
+
       width: 100%;
+      max-height: 50%;
     }
 
-    @include tablet {
+    @include responsive(tablet) {
+      justify-content: center;
+      align-content: center;
+
+      width: 100%;
+      max-height: 50%;
     }
-    @include mobile {
+    @include responsive(phone) {
+      justify-content: center;
+      align-content: center;
+      width: 100%;
+      max-height: 50%;
     }
   }
 }

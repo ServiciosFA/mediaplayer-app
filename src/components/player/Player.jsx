@@ -9,6 +9,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { currentTrackActions } from "../../store/currentTrackSlice";
 import AudioPlayer from "./audioPlayer/AudioPlayer";
 import { timerSliceActions } from "../../store/timerSilce";
+import Spinner from "../../ui/Spinner";
+import { fetchTracks } from "../../functions/tracksUtils";
+import { updateTime } from "../../functions/timerUtils";
 
 const Player = () => {
   const location = useLocation();
@@ -19,65 +22,31 @@ const Player = () => {
 
   //Peticion de tracks de un playList determinada
   useEffect(() => {
-    const fetchTracks = async () => {
-      try {
-        setLoading(true);
-        if (location?.state?.id) {
-          const data = await apiClient.get(
-            "playlists/" + location.state?.id + "/tracks"
-          );
-          dispatch(
-            currentTrackActions.SET_CURRENT_TRACK({
-              ...data.data.items[0].track,
-              tracks: data.data.items,
-              indexTrack: 0,
-            })
-          );
-          if (!data) throw new Error("Bad request");
-          setError(null);
-          setLoading(false);
-        } else {
-        }
-      } catch (error) {
-        console.log(error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-    fetchTracks();
-  }, [location.state, dispatch]);
+    fetchTracks(location, setLoading, setError, dispatch);
+  }, [dispatch, location]);
 
   //Setear tiempo para interfaz
   useEffect(() => {
-    dispatch(
-      timerSliceActions.SET_TIMER({
-        timer: { seconds: 0, minutes: 0 },
-        //Pasar a segundos la duracion
-        totalTime: currentTrack.duration / 1000,
-        trackPercentage: 0,
-      })
-    );
-  }, [currentTrack.duration, dispatch, currentTrack?.name]);
+    updateTime(dispatch, currentTrack.duration);
+  }, [currentTrack.duration, dispatch, currentTrack.name]);
+
+  if (!location.state && !currentTrack.name)
+    return <Navigate to="/library"></Navigate>;
+  if (loading && !currentTrack) {
+    return <Spinner type="big"></Spinner>;
+  }
 
   return (
-    <>
-      {!location.state && !currentTrack.name ? (
-        <Navigate to="/library"></Navigate>
-      ) : loading && !currentTrack ? (
-        <div>Loading</div>
-      ) : (
-        <div className="playerContainer">
-          <div className="leftContainer">
-            <AudioPlayer></AudioPlayer>
-            <Recommendation track={currentTrack.tracks}></Recommendation>
-          </div>
-          <div className="rightContainer">
-            <SongDetails currentTrack={currentTrack}></SongDetails>
-            <Playlist tracks={currentTrack.tracks}></Playlist>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="playerContainer">
+      <div className="leftContainer">
+        <AudioPlayer></AudioPlayer>
+        <Recommendation track={currentTrack.tracks}></Recommendation>
+      </div>
+      <div className="rightContainer">
+        <SongDetails currentTrack={currentTrack}></SongDetails>
+        <Playlist tracks={currentTrack.tracks}></Playlist>
+      </div>
+    </div>
   );
 };
 

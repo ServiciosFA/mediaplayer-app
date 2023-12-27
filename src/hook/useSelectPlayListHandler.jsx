@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import apiClient from "../spotify";
 import { currentTrackActions } from "../store/currentTrackSlice";
 
-const useSelectPlayList = (item, url) => {
+const useSelectPlayList = (item) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(false);
@@ -16,14 +16,14 @@ const useSelectPlayList = (item, url) => {
       const response = await apiClient.get(
         item.type + "s/" + item.id + "/tracks"
       );
-      dispatch(
-        currentTrackActions.SET_LIST_TRACK({ tracks: response.data.items })
-      );
+
+      const data = response.data;
+      dispatch(currentTrackActions.SET_LIST_TRACK({ tracks: data.items }));
 
       const objeto =
         item.type === "album"
           ? {
-              ...response.data.items[0],
+              ...data.items[0],
               album: {
                 images: [item.images[0]],
                 release_date: "",
@@ -31,11 +31,11 @@ const useSelectPlayList = (item, url) => {
               },
               indexTrack: 0,
             }
-          : { ...response.data.items[0].track, indexTrack: 0 };
+          : { ...data.items[0].track, indexTrack: 0, artists: data.artist };
 
       dispatch(currentTrackActions.SET_CURRENT_TRACK(objeto));
 
-      navigate("/player", { state: { playList: response.data.items } });
+      navigate("/player", { state: { playList: data.items } });
     } catch (error) {
       console.log(error);
       setError(true);

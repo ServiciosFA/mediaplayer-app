@@ -1,0 +1,20 @@
+// Define el mixin para puntos de quiebre comunes
+@mixin responsive($breakpoint) {
+  @if $breakpoint == phone {
+    @media screen and (max-width: 480px) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media screen and (min-width: 481px) and (max-width: 768px) {
+      @content;
+    }
+  } @else if $breakpoint == laptop {
+    @media screen and (min-width: 769px) and (max-width: 1200px) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media screen and (min-width: 1201px) {
+      @content;
+    }
+  }
+}

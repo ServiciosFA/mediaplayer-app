@@ -6,6 +6,7 @@ import { currentTrackActions } from "../../store/currentTrackSlice";
 import SearchBar from "../../ui/SearchBar";
 import LibraryItem from "./LibraryItem";
 import useDataRequest from "../../hook/useDataRequest";
+import Spinner from "../../ui/Spinner";
 
 const Library = () => {
   const navigate = useNavigate();
@@ -26,12 +27,17 @@ const Library = () => {
   //Selecciona la lista-redirige a player con el id de la lista
   const playListHandler = (listId) => {
     dispatch(currentTrackActions.SET_LIST_TRACK(playlists.items));
+
     navigate("/player", { state: { id: listId } });
   };
 
   const setSearchers = (e) => {
     setSearcher(e);
   };
+
+  if (loading) {
+    return <Spinner type="big"></Spinner>;
+  } else if (error) return <p>{error}</p>;
 
   //Render
   return (
@@ -41,20 +47,14 @@ const Library = () => {
         placeHolder={"Buscar en Library"}
       ></SearchBar>
       <ul className="listContainer">
-        {loading ? (
-          "Loading..."
-        ) : error ? (
-          <div>{error}</div>
-        ) : (
-          filterPlaylists?.map((playlist) => (
-            <LibraryItem
-              playlist={playlist}
-              onPlaylistHandler={playListHandler}
-              key={playlist.id}
-              itemKey={playlist.id}
-            ></LibraryItem>
-          ))
-        )}
+        {filterPlaylists?.map((playlist) => (
+          <LibraryItem
+            playlist={playlist}
+            onPlaylistHandler={playListHandler}
+            key={playlist.id}
+            itemKey={playlist.id}
+          ></LibraryItem>
+        ))}
       </ul>
     </div>
   );

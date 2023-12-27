@@ -6,11 +6,7 @@ import useSelectPlayList from "../../src/hook/useSelectPlayListHandler";
 const LayoutItem = ({ item }) => {
   const { playListHandler } = useSelectPlayList();
   return (
-    <li
-      className="itemContainer"
-      key={item.id}
-      onClick={() => playListHandler(item)}
-    >
+    <li className="itemContainer" onClick={() => playListHandler(item)}>
       <img src={item.images[0].url} className="imgItem" alt=""></img>
       <div className="textContainer">
         <p className="nameItem">{item.name}</p>

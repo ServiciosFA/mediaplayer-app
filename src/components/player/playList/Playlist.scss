@@ -1,18 +1,4 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../../styles/mixins.scss";
 
 .playListContainer {
   background-color: rgba(78, 131, 223, 0.616);
@@ -20,14 +6,26 @@
   border-radius: 10px;
   padding: 0.5rem;
   overflow-y: scroll;
-  width: 90%;
+  width: 20rem;
   max-width: 100%;
-  @include latop {
-    height: 100%;
-  }
+  max-height: 100%;
 
-  @include tablet {
+  @include responsive(desktop) {
+    width: 20rem;
   }
-  @include mobile {
+  @include responsive(laptop) {
+    width: 19rem;
+    height: 19rem;
+  }
+  @include responsive(tablet) {
+    width: 22rem;
+  }
+  @include responsive(phone) {
+    width: 14rem;
+  }
+  .listLayout {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
   }
 }

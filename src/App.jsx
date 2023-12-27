@@ -10,14 +10,12 @@ import Trending from "./pages/TrendingPage";
 import Library from "./pages/LibraryPage";
 import Favorites from "./pages/FavoritesPage";
 import Player from "./pages/PlayerPage";
-import NavBar from "./ui/NavBar";
 import Settings from "./pages/SettingsPage";
 import "./App.scss";
-import LocationInfo from "./hook/useToken";
 import { useSelector } from "react-redux";
-import RefreshToken from "./hook/useRefreshToken";
 
 import Home from "./pages/HomePage";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
   const token = useSelector((state) => state.token);
@@ -30,66 +28,60 @@ function App() {
 
   return (
     <Router>
-      <div className="layout">
-        {/*Hook useToken*/}
-        <LocationInfo></LocationInfo>
-        <RefreshToken></RefreshToken>
-        <NavBar></NavBar>
-        <div className="pagesContainer">
-          <Routes>
-            <Route path="/signin" element={<Signin></Signin>}></Route>
-            <Route path="/login" element={<Login></Login>}></Route>
-            <Route
-              path="/"
-              element={
-                <ProtectedRoute>
-                  <Home></Home>
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/trending"
-              element={
-                <ProtectedRoute>
-                  <Trending></Trending>
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/library"
-              element={
-                <ProtectedRoute>
-                  <Library></Library>
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/favorites"
-              element={
-                <ProtectedRoute>
-                  <Favorites></Favorites>
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/player"
-              element={
-                <ProtectedRoute>
-                  <Player></Player>
-                </ProtectedRoute>
-              }
-            ></Route>
-            <Route
-              path="/settings"
-              element={
-                <ProtectedRoute>
-                  <Settings></Settings>
-                </ProtectedRoute>
-              }
-            ></Route>
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route element={<AppLayout></AppLayout>}>
+          <Route path="/signin" element={<Signin></Signin>}></Route>
+          <Route path="/login" element={<Login></Login>}></Route>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home></Home>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/trending"
+            element={
+              <ProtectedRoute>
+                <Trending></Trending>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/library"
+            element={
+              <ProtectedRoute>
+                <Library></Library>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/favorites"
+            element={
+              <ProtectedRoute>
+                <Favorites></Favorites>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/player"
+            element={
+              <ProtectedRoute>
+                <Player></Player>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings></Settings>
+              </ProtectedRoute>
+            }
+          ></Route>
+        </Route>
+      </Routes>
     </Router>
   );
 }

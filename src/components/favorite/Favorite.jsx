@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import useDataRequest from "../../hook/useDataRequest";
 import SearchBar from "../../ui/SearchBar";
 import FavoriteItems from "./FavoriteItems";
+import { searcherList } from "../../functions/searcherUtils";
+import Spinner from "../../ui/Spinner";
 
 const Favorite = () => {
   const [searcher, setSearcher] = useState("");
@@ -17,48 +19,42 @@ const Favorite = () => {
   const { data: favTracks, loading, error } = useDataRequest("me/tracks");
 
   //Lista filtrada en variable para evitar problemas de vinculacion de estados
-  const searcherList = useMemo(() => {
-    return !loading
-      ? favTracks.items.filter(
-          (item) =>
-            item.track.name.toLowerCase().includes(searcher.toLowerCase()) ||
-            item.track.album.name
-              .toLowerCase()
-              .includes(searcher.toLowerCase()) ||
-            item.track.artists[0].name
-              .toLowerCase()
-              .includes(searcher.toLowerCase())
-        )
-      : [];
+  const searcherListFavourites = useMemo(() => {
+    return searcherList(loading, favTracks, searcher);
   }, [favTracks, searcher, loading]);
 
   //Render de lista de favoritos con memo para ahorrar calculos costosos
-  const favList = useMemo(() => {
-    const favPlayhandler = (item, i) => {
+  const renderFavList = useMemo(() => {
+    const favPlayhandler = (item, index) => {
       dispatch(currentTrackActions.SET_LIST_TRACK({ tracks: favTracks.items }));
 
       dispatch(
-        currentTrackActions.SET_CURRENT_TRACK({ ...item.track, indexTrack: i })
+        currentTrackActions.SET_CURRENT_TRACK({
+          ...item.track,
+          indexTrack: index,
+        })
       );
       navigate("/player", { state: { favTracks } });
     };
-    return searcherList?.map((item, i) => {
+    return searcherListFavourites?.map((item, index) => {
       const itemTime = time(item.track.duration_ms);
       if (itemTime.segundos < 10) itemTime.segundos = "0" + itemTime.segundos;
       return (
         <FavoriteItems
           itemTime={itemTime}
-          key={i + item.track.id}
-          itemKey={i + item.track.id}
-          i={i}
+          key={index + item.track.id}
+          itemKey={index + item.track.id}
+          index={index}
           item={item}
           onFav={favPlayhandler}
         ></FavoriteItems>
       );
     });
-  }, [dispatch, favTracks, navigate, searcherList]);
-  const setSearchers = (e) => {
-    setSearcher(e);
+  }, [dispatch, favTracks, navigate, searcherListFavourites]);
+
+  //Update searcher
+  const setSearchers = (event) => {
+    setSearcher(event);
   };
 
   return (
@@ -67,7 +63,11 @@ const Favorite = () => {
         onsetSearcher={setSearchers}
         placeHolder={"Buscar en lista"}
       ></SearchBar>
-      <ul className="favList">{!loading && favList}</ul>
+      {loading ? (
+        <Spinner type="big"></Spinner>
+      ) : (
+        <ul className="favList">{renderFavList}</ul>
+      )}
     </div>
   );
 };

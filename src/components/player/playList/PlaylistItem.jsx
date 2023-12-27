@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "./PlaylistItem.scss";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const PlaylistItem = ({
   currentTrack,
@@ -16,18 +17,33 @@ const PlaylistItem = ({
       className={
         index !== currentTrack.indexTrack
           ? "playListItem"
-          : "playListItemActive"
+          : "playListItem ItemActive"
       }
       key={itemKey + index}
-      onDoubleClick={() => onSelectHandler(showTrack, index)}
+      onClick={() => onSelectHandler(showTrack, index)}
       ref={index === currentTrack.indexTrack ? activeTrackRef : null}
     >
-      <div className="itemContainer">
-        <p className="index">{index + 1}</p>
-        <p>{showTrack?.name}</p>
+      <ReactTooltip
+        id="itemPlaylist"
+        effect="solid"
+        place="bottom"
+        type="info"
+        globalEventOff="hover"
+        className="etiqueta"
+      />
+      <div className="itemPlaylistContainer">
+        <p className="indexlistItem">{index + 1}</p>
+        <p
+          className="namelistItem"
+          data-tip
+          data-tooltip-id="itemPlaylist"
+          data-tooltip-content={showTrack?.name}
+        >
+          {showTrack?.name}
+        </p>
       </div>
 
-      <p>{minutos + ":" + segundos}</p>
+      <p className="timelistItem">{minutos + ":" + segundos}</p>
     </li>
   );
 };

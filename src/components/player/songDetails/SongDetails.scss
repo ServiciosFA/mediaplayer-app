@@ -1,18 +1,4 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../../styles/mixins.scss";
 
 .songDetailsContainer {
   background-color: rgba(31, 50, 83, 0.76);
@@ -22,70 +8,133 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  height: 70%;
+  max-height: 100%;
 
-  @include latop {
+  @include responsive(desktop) {
+    flex-direction: column;
+    height: fit-content;
+  }
+  @include responsive(laptop) {
     flex-direction: row;
-    height: 100%;
+    height: fit-content;
+    justify-content: space-around;
+    align-items: center;
+    height: 19rem;
   }
 
-  @include tablet {
-    display: none;
+  @include responsive(tablet) {
+    align-items: center;
+    flex: 1.5;
+    flex-direction: row;
+    height: 2rem;
+    width: 22rem;
+    padding: 1rem;
   }
-  @include mobile {
+  @include responsive(phone) {
+    align-items: center;
+    flex: 1;
+    flex-direction: row;
+    height: 1rem;
+    width: 14rem;
+    padding: 0.2rem;
   }
   .imageContainer {
-    height: 70%;
-    flex: 1;
-    img {
-      max-width: 100%;
-      border-radius: 10px;
-      height: 100%;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: 100%;
+    @include responsive(desktop) {
+      width: 15rem;
+      height: 15rem;
+    }
+    @include responsive(laptop) {
+      width: 9rem;
+      height: 9rem;
+    }
+
+    @include responsive(tablet) {
+      width: 4em;
+      height: 4rem;
+    }
+    @include responsive(phone) {
+      width: 3em;
+      height: 3rem;
+    }
+    .imageAlbum {
       width: 100%;
-      @include latop {
-        height: 70%;
-        width: 70%;
-      }
-
-      @include tablet {
-        height: 60%;
-        width: 60%;
-      }
-      @include mobile {
-        height: 50%;
-        width: 50%;
-      }
-    }
-    @include latop {
       height: 100%;
-      flex: 5;
-    }
-
-    @include tablet {
-      flex: 4;
-    }
-    @include mobile {
-      flex: 3;
     }
   }
   .descriptionContainer {
-    flex: 3;
+    align-items: center;
+
+    @include responsive(desktop) {
+    }
+    @include responsive(laptop) {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    @include responsive(tablet) {
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    @include responsive(phone) {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+    .like {
+      color: rgb(253, 133, 90);
+      cursor: pointer;
+    }
+    .unLike {
+      color: rgb(253, 133, 90);
+      cursor: pointer;
+    }
     .artistItem {
       display: flex;
       justify-content: space-between;
-      flex-direction: column;
+      flex-direction: row;
       padding: 1rem 0;
       overflow: hidden;
-      .like {
-        color: rgb(253, 133, 90);
+
+      @include responsive(laptop) {
+        padding: 0;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 10rem;
       }
-      .unLike {
-        color: rgb(253, 133, 90);
+
+      @include responsive(tablet) {
+        padding: 0;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 12rem;
       }
+      @include responsive(phone) {
+        padding: 0;
+        flex-direction: row-reverse;
+        justify-content: space-around;
+        width: 9rem;
+      }
+
       .marquee {
         display: inline-block;
         white-space: wrap;
         animation: marquee 10s linear infinite;
+        overflow-x: hidden;
+
+        @include responsive(phone) {
+          font-size: 0.8rem;
+        }
       }
 
       @keyframes marquee {
@@ -93,10 +142,10 @@
           transform: translateX(0);
         }
         50% {
-          transform: translatex(100%);
+          transform: translatex(80%);
         }
         100% {
-          transform: translateX(0);
+          transform: translateX(0%);
         }
       }
     }
@@ -104,5 +153,11 @@
   .descriptionDate {
     font-size: medium;
     font-weight: 400;
+    @include responsive(tablet) {
+      display: none;
+    }
+    @include responsive(phone) {
+      display: none;
+    }
   }
 }

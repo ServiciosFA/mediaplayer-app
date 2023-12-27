@@ -2,7 +2,9 @@ import React, { useMemo, useState } from "react";
 import "./Home.scss";
 import SearchBar from "../ui/SearchBar";
 import useDataRequest from "../hook/useDataRequest";
-import HomeItem from "./HomeItem";
+
+import LayoutItem from "../ui/LayoutItem";
+import Spinner from "../ui/Spinner";
 
 const Home = () => {
   const { data: newReleases, loading } = useDataRequest("browse/new-releases");
@@ -22,10 +24,13 @@ const Home = () => {
   return (
     <div className="homeContainer">
       <SearchBar placeHolder={"Buscar"} onsetSearcher={setSearcher}></SearchBar>
-      {!loading && (
+      <p className="titleHome">New releases in your country</p>
+      {loading ? (
+        <Spinner type={"big"}></Spinner>
+      ) : (
         <ul className="homeList">
           {searcherList.map((item, i) => (
-            <HomeItem item={item} key={item.id} itemKey={i}></HomeItem>
+            <LayoutItem item={item} key={item.id}></LayoutItem>
           ))}
         </ul>
       )}

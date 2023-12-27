@@ -1,27 +1,40 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../styles/mixins.scss";
+$color-background: rgb(243, 95, 41);
+$color-background-2: rgba(223, 66, 9, 0.568);
+$color-font: rgb(255, 255, 255);
+$color-font-2: rgb(1, 23, 61);
+$size-font-smaller: 1rem;
+$size-font-small: 2rem;
+$size-font-normal: 3rem;
+$size-font-big: 4rem;
+$size-font-bigger: 5rem;
 .menuContainer {
   display: flex;
   flex-direction: column;
-  background-color: rgb(243, 95, 41);
+  background: linear-gradient(rgb(243, 95, 41), rgb(22, 68, 148));
+  color: $color-font;
   justify-content: center;
   flex: 1;
   align-items: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding: 10px;
+  font-size: $size-font-bigger;
+  height: 100%;
+
+  @include responsive(desktop) {
+    font-weight: 400;
+  }
+  @include responsive(laptop) {
+    font-size: small;
+    font-weight: 350;
+  }
+  @include responsive(tablet) {
+    font-size: x-small;
+    font-weight: 200;
+  }
+  @include responsive(phone) {
+    font-size: x-small;
+    font-weight: 100;
+  }
 
   .settingsContainer {
     flex: 2;
@@ -32,7 +45,7 @@
     flex: 2;
     align-items: center;
   }
-  img {
+  .imageUsr {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -56,36 +69,43 @@
     height: max-content;
     padding: 0.3rem;
     border-radius: 3px;
-    @include latop {
+    @include responsive(desktop) {
+    }
+    @include responsive(laptop) {
       padding: 0.2rem;
       font-size: small;
       font-weight: 200;
     }
-
-    @include tablet {
+    @include responsive(tablet) {
       padding: 0.1rem;
       font-size: x-small;
       font-weight: 100;
     }
-    @include mobile {
+    @include responsive(phone) {
+      padding: 0.1rem;
+      font-size: x-small;
+      font-weight: 100;
     }
   }
   .icon-active {
-    color: rgb(22, 68, 148);
-    background-color: rgba(223, 66, 9, 0.568);
-    font-weight: 600;
-    @include latop {
+    background-color: $color-background-2;
+    font-weight: 700;
+    @include responsive(desktop) {
+    }
+    @include responsive(laptop) {
       padding: 0.2rem;
       font-size: small;
       font-weight: 200;
     }
-
-    @include tablet {
+    @include responsive(tablet) {
       padding: 0.1rem;
       font-size: x-small;
       font-weight: 100;
     }
-    @include mobile {
+    @include responsive(phone) {
+      padding: 0.1rem;
+      font-size: x-small;
+      font-weight: 100;
     }
   }
 }

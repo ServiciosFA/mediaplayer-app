@@ -1,23 +1,23 @@
 import React from "react";
 import "./FavoriteItems.scss";
 
-const FavoriteItems = ({ item, i, itemKey, itemTime, onFav }) => {
+const FavoriteItems = ({ item, index, itemTime, onFav }) => {
   return (
-    <li key={itemKey} className="favItem" onClick={() => onFav(item, i)}>
+    <li className="favItem" onClick={() => onFav(item, index)}>
+      <p className="favNum">{index + 1}</p>
       <div className="favName">
-        <p className="favNum">{i + 1}</p>
         <img
           src={item.track.album.images[0].url}
           alt=""
           className="favImages"
         ></img>
-        <div>
-          <p className="favTrack">{item.track.name} -</p>
-          <p className="favArtist">{item.track.artists[0].name}</p>
+        <div className="nametrackLayout">
+          <p className="favTrack">{item.track.name}</p>
+          <span className="favArtist">{item.track.artists[0].name}</span>
         </div>
       </div>
 
-      <p>{itemTime.minutos + ":" + itemTime.segundos}</p>
+      <p className="timeTrack">{itemTime.minutos + ":" + itemTime.segundos}</p>
     </li>
   );
 };
