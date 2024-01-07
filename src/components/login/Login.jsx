@@ -52,6 +52,7 @@ const Login = () => {
           className="logo"
         ></img>
         <p>{user?.displayName}</p>
+        <p className="usernameText">{user?.displayName}</p>
       </div>
       <div className="buttonContainer">
         {!token?.accessToken ? (
