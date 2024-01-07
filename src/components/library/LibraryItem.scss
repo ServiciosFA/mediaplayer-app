@@ -1,21 +1,15 @@
-@mixin mobile {
-  @media screen and (max-width: 480px) {
-    @content;
-  }
-}
-@mixin tablet {
-  @media screen and (max-width: 768px) {
-    @content;
-  }
-}
-@mixin latop {
-  @media screen and (max-width: 1200px) {
-    @content;
-  }
-}
+@import "../../styles/mixins.scss";
+$color-background: rgb(243, 95, 41);
+$color-background-2: rgb(223, 66, 9);
+$color-font: rgb(255, 255, 255);
+$color-font-2: rgb(1, 57, 153);
+$size-font-smaller: 1rem;
+$size-font-small: 1.5rem;
+$size-font-normal: 2rem;
+$size-font-big: 3rem;
+$size-font-bigger: 4rem;
 
 .listItem {
-  position: relative;
   background-color: rgba(30, 78, 133, 0.5);
   display: flex;
   flex-direction: column;
@@ -26,89 +20,90 @@
   gap: 1rem;
   width: 11rem;
   height: 15rem;
-  @include latop {
-    flex-direction: row;
-    width: 13rem;
-    height: 7rem;
-    justify-content: flex-start;
-    align-items: center;
+  @include responsive(laptop) {
+    width: 10rem;
+    height: 15rem;
   }
-  @include tablet {
-    width: 13rem;
-    height: 5rem;
+  @include responsive(tablet) {
   }
-  @include mobile {
+  @include responsive(phone) {
   }
 
   &:hover {
     cursor: pointer;
-    transform: scale(1.02);
-    .containerPlay {
-      opacity: 1;
-    }
   }
 
-  .images {
-    width: 80px;
-    height: 80px;
-    align-self: center;
-    @include latop {
-      width: 60px;
-      height: 60px;
-    }
-    @include tablet {
-      width: 50px;
-      height: 50px;
-    }
-    @include mobile {
-      width: 45px;
-      height: 45px;
-    }
-  }
-  .itemDescription {
+  .descriptionfavContainer {
     display: flex;
-    flex-wrap: wrap;
+    max-width: 100%;
+    width: 9rem;
+    align-items: center;
     flex-direction: column;
     gap: 5px;
+    @include responsive(laptop) {
+    }
+    @include responsive(tablet) {
+    }
+    @include responsive(phone) {
+    }
     h4 {
-      @include latop {
-        font-size: small;
-        font-weight: 400;
+      @include responsive(laptop) {
       }
-      @include tablet {
+      @include responsive(tablet) {
         font-size: small;
       }
-      @include mobile {
+      @include responsive(phone) {
+        font-size: small;
+      }
+    }
+    .imagesFavorite {
+      width: 8rem;
+      height: 8rem;
+      @include responsive(laptop) {
+      }
+      @include responsive(tablet) {
+      }
+      @include responsive(phone) {
       }
     }
     .tracks {
       font-size: smaller;
       font-weight: 300;
       color: silver;
-      @include latop {
+      @include responsive(laptop) {
         font-size: x-small;
       }
-      @include tablet {
+      @include responsive(tablet) {
       }
-      @include mobile {
+      @include responsive(phone) {
       }
     }
+    .descriptionFavorite {
+    }
   }
-  .containerPlay {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    opacity: 0;
-    background-color: rgb(253, 133, 90);
-    color: rgba(33, 64, 99);
-    border-radius: 50%;
+
+  .titleModal {
+    @include responsive(phone) {
+      font-size: medium;
+    }
+  }
+  .descriptionModal {
+    .playlistName {
+      font-weight: 600;
+    }
+    @include responsive(phone) {
+      font-size: small;
+    }
+  }
+  .buttonPanelmodal {
+    align-self: flex-end;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.3s ease;
-  }
-  .containerPlay.zeroSong {
-    background-color: rgb(124, 124, 124);
-    color: black;
+    width: 100%;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 0.3rem;
+    @include responsive(phone) {
+      width: 18rem;
+    }
   }
 }

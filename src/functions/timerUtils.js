@@ -1,5 +1,16 @@
 import { timerSliceActions } from "../store/timerSilce";
 
+export const formatTime = (milliseconds) => {
+  const totalSeconds = Math.floor(milliseconds / 1000);
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+
+  const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  return `${formattedMinutes}:${formattedSeconds}`;
+};
+
 export const updateTime = (dispatch, duration) => {
   dispatch(
     timerSliceActions.SET_TIMER({
@@ -21,19 +32,21 @@ export const updateTimexPercentage = (
   setPercentage(value);
   const audioElement = audioRef.current;
   const totalTime = audioElement.duration;
-  const currentTime = (value / 100) * totalTime;
-  audioElement.currentTime = currentTime;
+  if (!isNaN(totalTime) && totalTime !== 0) {
+    const currentTime = (value / 100) * totalTime;
+    audioElement.currentTime = currentTime;
 
-  dispatch(
-    timerSliceActions.SET_TIMER({
-      timer: {
-        minutes: Math.floor(currentTime / 60),
-        seconds: Math.floor(currentTime % 60),
-      },
-      totalTime,
-      trackPercentage: percentage,
-    })
-  );
+    dispatch(
+      timerSliceActions.SET_TIMER({
+        timer: {
+          minutes: Math.floor(currentTime / 60),
+          seconds: Math.floor(currentTime % 60),
+        },
+        totalTime,
+        trackPercentage: percentage,
+      })
+    );
+  }
 };
 
 export const updatePercentagexTime = (

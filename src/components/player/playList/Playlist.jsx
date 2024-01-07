@@ -31,14 +31,6 @@ const Playlist = (props) => {
           indexTrack: i,
         })
       );
-      dispatch(
-        timerSliceActions.SET_TIMER({
-          timer: { seconds: 0, minutes: 0 },
-          totalTime: currentTrack?.duration / 1000,
-          trackPercentage: 0,
-          isRunning: true,
-        })
-      );
     };
     return currentTrack.tracks?.map((track, i) => {
       const showTrack = track?.track ? track.track : track;

@@ -1,6 +1,7 @@
 @import "../styles/mixins.scss";
 $color-background: rgb(243, 95, 41);
 $color-background-2: rgba(223, 66, 9, 0.568);
+$color-background-3: rgb(22, 68, 148);
 $color-font: rgb(255, 255, 255);
 $color-font-2: rgb(1, 23, 61);
 $size-font-smaller: 1rem;
@@ -11,7 +12,7 @@ $size-font-bigger: 5rem;
 .menuContainer {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(rgb(243, 95, 41), rgb(22, 68, 148));
+  background: linear-gradient($color-background, $color-background-3);
   color: $color-font;
   justify-content: center;
   flex: 1;

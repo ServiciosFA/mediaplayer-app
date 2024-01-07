@@ -1,0 +1,47 @@
+@import "../styles/mixins.scss";
+$color-background: rgb(243, 95, 41);
+$color-background-2: rgb(223, 66, 9);
+$color-font: rgb(59, 59, 59);
+$color-font-2: rgb(0, 0, 0);
+$size-font-smaller: 1rem;
+$size-font-small: 1.5rem;
+$size-font-normal: 2rem;
+$size-font-big: 3rem;
+$size-font-bigger: 4rem;
+.cardContainer.big {
+  width: 80%;
+  height: 80%;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25rem;
+  height: 15rem;
+  background: linear-gradient($color-font-2, $color-font);
+  background-color: $color-font-2;
+  padding: 1rem;
+  border-radius: 10px;
+  position: relative;
+  cursor: default;
+  @include responsive(laptop) {
+  }
+  @include responsive(tablet) {
+    width: 22rem;
+  }
+  @include responsive(phone) {
+    width: 14.5rem;
+    height: 17rem;
+  }
+
+  .headCard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0.1rem;
+    &:hover {
+      color: $color-background;
+      cursor: pointer;
+    }
+  }
+}

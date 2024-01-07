@@ -12,7 +12,6 @@ $size-font-bigger: 4rem;
 .trendingContainer {
   width: 100%;
   height: 100%;
-
   display: flex;
   padding: 5rem;
   gap: 1rem;
@@ -27,5 +26,6 @@ $size-font-bigger: 4rem;
   .titleTreding {
     font-size: larger;
     font-weight: 700;
+    align-self: self-start;
   }
 }

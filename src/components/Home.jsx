@@ -23,8 +23,13 @@ const Home = () => {
 
   return (
     <div className="homeContainer">
-      <SearchBar placeHolder={"Buscar"} onsetSearcher={setSearcher}></SearchBar>
-      <p className="titleHome">New releases in your country</p>
+      <div className="headerHome">
+        <p className="titleHome">New releases in your country</p>
+        <SearchBar
+          placeHolder={"Buscar"}
+          onsetSearcher={setSearcher}
+        ></SearchBar>
+      </div>
       {loading ? (
         <Spinner type={"big"}></Spinner>
       ) : (

@@ -18,7 +18,7 @@ const ButtonsPlayer = (props) => {
         <ShuffleOnIcon
           data-tooltip-id="buttonPlayer"
           data-tooltip-content="Shuffle on"
-          className="buttonActive"
+          className="buttonpanelActive"
           fontSize="large"
           onClick={props.onShuffle}
         ></ShuffleOnIcon>
@@ -26,13 +26,13 @@ const ButtonsPlayer = (props) => {
         <ShuffleIcon
           data-tooltip-id="buttonPlayer"
           data-tooltip-content="Shuffle off"
-          className="buttonActive"
+          className="buttonpanelActive"
           fontSize="large"
           onClick={props.onShuffle}
         ></ShuffleIcon>
       )}
       <SkipPreviousIcon
-        className="button"
+        className="buttonpanel"
         fontSize="large"
         onClick={props.onPrev}
       ></SkipPreviousIcon>
@@ -50,7 +50,7 @@ const ButtonsPlayer = (props) => {
         ></PauseCircleIcon>
       )}
       <SkipNextIcon
-        className="button"
+        className="buttonpanel"
         fontSize="large"
         onClick={props.onNext}
       ></SkipNextIcon>
@@ -58,7 +58,7 @@ const ButtonsPlayer = (props) => {
         <RepeatOnIcon
           data-tooltip-id="buttonPlayer"
           data-tooltip-content="Repeat on"
-          className="buttonActive"
+          className="buttonpanelActive"
           fontSize="large"
           onClick={props.onRepeat}
         ></RepeatOnIcon>
@@ -66,7 +66,7 @@ const ButtonsPlayer = (props) => {
         <RepeatIcon
           data-tooltip-id="buttonPlayer"
           data-tooltip-content="Repeat off"
-          className="buttonActive"
+          className="buttonpanelActive"
           fontSize="large"
           onClick={props.onRepeat}
         ></RepeatIcon>

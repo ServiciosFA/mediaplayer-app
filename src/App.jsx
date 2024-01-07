@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 
 import Home from "./pages/HomePage";
 import AppLayout from "./pages/AppLayout";
+import PlaylistPage from "./pages/PlaylistPage";
 
 function App() {
   const token = useSelector((state) => state.token);
@@ -53,6 +54,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Library></Library>
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="/library/:playlistId"
+            element={
+              <ProtectedRoute>
+                <PlaylistPage></PlaylistPage>
               </ProtectedRoute>
             }
           ></Route>

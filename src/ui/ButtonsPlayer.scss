@@ -21,7 +21,7 @@ $button-color-2: rgb(255, 255, 255);
   @include responsive(phone) {
     gap: 0.5rem;
   }
-  .button {
+  .buttonpanel {
     color: $button-color-1;
     &:hover {
       cursor: pointer;
@@ -32,7 +32,7 @@ $button-color-2: rgb(255, 255, 255);
       width: 1.5rem;
     }
   }
-  .buttonActive {
+  .buttonpanelActive {
     color: $background-color;
     &:hover {
       cursor: pointer;

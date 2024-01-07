@@ -1,6 +1,6 @@
 export const searcherList = (loading, favTracks, searcher) => {
-  if (!loading)
-    return favTracks.items.filter(
+  if (!loading && favTracks)
+    return favTracks?.items?.filter(
       (item) =>
         item.track.name.toLowerCase().includes(searcher.toLowerCase()) ||
         item.track.album.name.toLowerCase().includes(searcher.toLowerCase()) ||
@@ -8,5 +8,5 @@ export const searcherList = (loading, favTracks, searcher) => {
           .toLowerCase()
           .includes(searcher.toLowerCase())
     );
-  else return favTracks.items;
+  else return [favTracks?.items];
 };

@@ -1,0 +1,33 @@
+@import "../../styles/mixins.scss";
+.buttonPanelLibrary {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  width: 9rem;
+  @include responsive(laptop) {
+  }
+  @include responsive(tablet) {
+  }
+  @include responsive(phone) {
+    height: 100%;
+  }
+  .buttonPanel {
+    background-color: rgb(124, 124, 124);
+    color: rgba(33, 64, 99);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s ease;
+    &:hover {
+      background-color: rgb(253, 133, 90);
+      color: rgba(33, 64, 99);
+    }
+  }
+  .buttonPanel.off {
+    &:hover {
+      background-color: rgb(124, 124, 124);
+      color: black;
+    }
+  }
+}

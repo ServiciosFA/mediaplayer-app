@@ -1,0 +1,19 @@
+$color-background: rgb(131, 130, 130);
+$color-font: rgb(243, 95, 41);
+
+.like {
+  color: $color-background;
+
+  &:hover {
+    color: $color-font;
+  }
+  cursor: pointer;
+}
+.unLike {
+  color: $color-background;
+
+  &:hover {
+    color: $color-font;
+  }
+  cursor: pointer;
+}

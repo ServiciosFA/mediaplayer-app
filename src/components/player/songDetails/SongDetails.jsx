@@ -4,6 +4,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useSelector } from "react-redux";
 import { fetchArtist, fetchTooglelikes } from "../../../functions/tracksUtils";
+import LikeToggle from "../../../ui/LikeToggle";
 
 const SongDetails = (props) => {
   const currentTrack = useSelector((state) => state.currentTrack);
@@ -15,7 +16,7 @@ const SongDetails = (props) => {
 
   useEffect(() => {
     fetchArtist(setLoading, setLike, currentTrack.id);
-  }, [currentTrack]);
+  }, [currentTrack, like]);
 
   const onLikeHandler = (e) => {
     fetchTooglelikes(setLike, like, currentTrack.id);
@@ -33,18 +34,11 @@ const SongDetails = (props) => {
       <div className="descriptionContainer">
         <div className="artistItem">
           <h4 className="marquee">{currentTrack?.artist}</h4>
-          {!loading && like ? (
-            <FavoriteIcon
-              onClick={onLikeHandler}
-              className="like"
-            ></FavoriteIcon>
-          ) : (
-            <FavoriteBorderOutlinedIcon
-              onClick={onLikeHandler}
-              className="unLike"
-            ></FavoriteBorderOutlinedIcon>
-          )}
         </div>
+        <LikeToggle
+          condition={!loading && like}
+          onLikeHandler={onLikeHandler}
+        ></LikeToggle>
         <div className="descriptionDate">
           <p className="releaseText">Release Date: </p>
           <p>{currentTrack?.releaseDate}</p>

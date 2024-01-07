@@ -1,0 +1,33 @@
+@import "../styles/mixins.scss";
+$color-background: rgb(243, 95, 41);
+$color-background-2: rgb(255, 68, 0);
+$color-font: rgb(180, 180, 180);
+$color-font-2: rgb(255, 255, 255);
+$size-font-smaller: 1rem;
+$size-font-small: 1.5rem;
+$size-font-normal: 2rem;
+$size-font-big: 3rem;
+$size-font-bigger: 4rem;
+
+.button {
+  color: rgb(255, 255, 255);
+  padding: 0.5rem;
+  font-weight: 550;
+  background-color: transparent;
+  border: none;
+  &:hover {
+    border-color: $color-background-2;
+    color: $color-background-2;
+    scale: 1.1;
+  }
+}
+
+.button.focus {
+  border-radius: 50px;
+  background-color: $color-background-2;
+  border-color: $color-background-2;
+  color: $color-font-2;
+  &:hover {
+    background-color: $color-background;
+  }
+}

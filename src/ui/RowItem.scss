@@ -1,17 +1,20 @@
-@import "../../styles/mixins.scss";
+@import "../styles/mixins.scss";
+$color-background-icon: rgb(131, 130, 130);
+$color-background-track: rgba(46, 77, 131, 0.308);
+$color-background-track-hover: rgba(72, 117, 194, 0.308);
+$color-font: rgb(253, 133, 90);
 
-.favItem {
+.rowItem {
   padding: 0.3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
-  background-color: rgba(46, 77, 131, 0.308);
-  color: rgb(253, 133, 90);
+  background-color: $color-background-track;
+  color: $color-font;
   width: 60rem;
-  &:hover {
-    cursor: pointer;
-  }
+  gap: 0.2rem;
+
   @include responsive(laptop) {
     width: 40rem;
   }
@@ -20,20 +23,97 @@
   }
   @include responsive(phone) {
     width: 14rem;
+    flex-direction: column;
+    gap: 1rem;
   }
   &:hover {
-    background-color: rgba(72, 117, 194, 0.308);
+    background-color: $color-background-track-hover;
+    .buttonActionsContainer {
+      .rowLike {
+        display: block;
+      }
+      .rowDelete {
+        display: block;
+      }
+    }
+  }
+  .buttonActionsContainer {
+    display: flex;
+    padding: 1rem;
+    width: 5rem;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    @include responsive(laptop) {
+    }
+    @include responsive(tablet) {
+      padding: 0.5rem;
+      flex-direction: column;
+      width: 2rem;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    @include responsive(phone) {
+      padding: 0.5rem;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rowAdd {
+      cursor: pointer;
+      flex: 1;
+      text-align: center;
+      height: fit-content;
+      color: $color-background-icon;
+      &:hover {
+        color: $color-font;
+      }
+    }
+    .rowDelete {
+      display: none;
+      flex: 1;
+      text-align: center;
+      height: fit-content;
+      color: $color-background-icon;
+      cursor: pointer;
+
+      @include responsive(laptop) {
+      }
+      @include responsive(tablet) {
+      }
+      @include responsive(phone) {
+      }
+      &:hover {
+        color: $color-font;
+      }
+    }
+
+    .rowLike {
+      display: none;
+      flex: 1;
+      text-align: center;
+      height: fit-content;
+    }
   }
 
-  .favNum {
+  .rowNum {
     flex: 0.5;
     text-align: center;
+    font-weight: 700;
   }
-  .favName {
+  .rowName {
     align-items: center;
     display: flex;
-    gap: 5rem;
+    gap: 3rem;
     flex: 8;
+    &:hover {
+      cursor: default;
+    }
+    @include responsive(desktop) {
+      flex: 7;
+    }
     @include responsive(laptop) {
       flex: 7;
     }
@@ -48,7 +128,7 @@
       flex-direction: column;
     }
 
-    .favImages {
+    .rowImages {
       width: 8rem;
       height: 8rem;
       @include responsive(laptop) {
@@ -70,7 +150,10 @@
       flex-direction: column;
 
       flex: 1;
-      .favTrack {
+      @include responsive(phone) {
+        text-align: center;
+      }
+      .rowTrack {
         font-size: large;
         font-weight: 300;
         @include responsive(laptop) {
@@ -90,10 +173,9 @@
           width: 9rem;
           align-items: center;
           justify-content: center;
-          text-align: center;
         }
       }
-      .favArtist {
+      .rowArtist {
         font-size: large;
         font-weight: 600;
         @include responsive(laptop) {
@@ -114,7 +196,7 @@
       }
     }
   }
-  .timeTrack {
+  .rowTime {
     font-size: smaller;
   }
 }

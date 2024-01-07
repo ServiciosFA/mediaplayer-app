@@ -1,0 +1,95 @@
+@import "../../styles/mixins.scss";
+$color-background-icon: rgb(255, 255, 255);
+$color-background-track: rgba(46, 77, 131, 0.308);
+$color-background-track-hover: rgba(72, 117, 194, 0.308);
+$color-font: rgb(253, 133, 90);
+
+.libraryItemContainer {
+  height: 100%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  position: relative;
+  @include responsive(desktop) {
+  }
+  @include responsive(latop) {
+  }
+  @include responsive(tablet) {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  @include responsive(phone) {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .titlePlaylist {
+    background: linear-gradient(to right, #fae100, #fc6e1c);
+    -webkit-background-clip: text;
+    color: transparent; /* Set text color to transparent to reveal the gradient */
+    display: inline-block; /* Ensure the gradient only affects the text */
+    font-size: 3rem;
+    font-weight: 700;
+    padding-top: 5rem;
+    @include responsive(desktop) {
+    }
+    @include responsive(latop) {
+    }
+    @include responsive(tablet) {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    @include responsive(phone) {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+  .descriptionText {
+    background-color: $color-background-track-hover;
+    max-width: 30rem;
+    width: fit-content;
+    border-radius: 5px;
+    padding: 1rem;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    @include responsive(desktop) {
+    }
+    @include responsive(latop) {
+    }
+    @include responsive(tablet) {
+      padding: 0.5rem;
+    }
+    @include responsive(phone) {
+      padding: 0.3rem;
+    }
+  }
+  .buttonPlaylist {
+    color: $color-background-icon;
+    width: 3rem;
+    height: 3rem;
+    position: fixed;
+    &:hover {
+      color: $color-font;
+      cursor: pointer;
+    }
+    @include responsive(desktop) {
+    }
+    @include responsive(latop) {
+    }
+    @include responsive(tablet) {
+    }
+    @include responsive(phone) {
+    }
+  }
+  .buttonPlaylist.back {
+    top: 2rem;
+    left: 2rem;
+    position: absolute;
+  }
+  .buttonPlaylist.add {
+    top: 2rem;
+    right: 10%;
+  }
+}
