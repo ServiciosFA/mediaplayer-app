@@ -46,6 +46,7 @@ $size-font-bigger: 4rem;
       justify-content: center;
     }
     @include responsive(laptop) {
+      justify-content: center;
     }
 
     @include responsive(tablet) {

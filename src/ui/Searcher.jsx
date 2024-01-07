@@ -7,11 +7,26 @@ import RowItem from "./RowItem";
 import apiClient from "../spotify";
 import { notificationActions } from "../store/notificationSlice";
 import { useDispatch } from "react-redux";
+import { currentTrackActions } from "../store/currentTrackSlice";
+import { useNavigate } from "react-router-dom";
 
 const Searcher = ({ onClose, item }) => {
   const [searcher, setSearcher] = useState("");
   const [items, setItems] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const favPlayhandler = (item, index) => {
+    dispatch(currentTrackActions.SET_LIST_TRACK({ tracks: [item] }));
+
+    dispatch(
+      currentTrackActions.SET_CURRENT_TRACK({
+        ...item,
+        indexTrack: index,
+      })
+    );
+    navigate("/player", { state: { tracks: [item] } });
+  };
 
   useEffect(() => {
     const searchItem = async () => {
@@ -59,14 +74,16 @@ const Searcher = ({ onClose, item }) => {
         </div>
         {searcher === "" ? (
           <div className="searchItemsContainer">
-            <p className="searchEmpty">Ingrese texto en la busqueda</p>
+            <p className="searchEmpty">
+              Enter the song or artist you want to look for.
+            </p>
           </div>
         ) : (
           <ul className="searchItemsContainer">
             {items?.map((item, id) => (
               <RowItem
                 index={id}
-                onPlayrow
+                onPlayrow={favPlayhandler}
                 item={item}
                 onLikeToggle={null}
                 itemTime={item.duration_ms}

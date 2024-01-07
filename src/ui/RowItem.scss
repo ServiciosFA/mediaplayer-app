@@ -67,6 +67,8 @@ $color-font: rgb(253, 133, 90);
       text-align: center;
       height: fit-content;
       color: $color-background-icon;
+      max-height: 2.5rem;
+      max-width: 2.5rem;
       &:hover {
         color: $color-font;
       }
