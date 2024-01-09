@@ -11,10 +11,8 @@ import RowList from "../../ui/RowList";
 
 const Favorite = () => {
   const [searcher, setSearcher] = useState("");
-
   const [favTracks, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   //Peticion Api Lista de favoritos
   useEffect(() => {
@@ -25,7 +23,6 @@ const Favorite = () => {
         setData(response.data);
         setLoading(false);
       } catch (error) {
-        setError(true);
         console.log(error);
       }
     };
