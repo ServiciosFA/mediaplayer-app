@@ -89,10 +89,6 @@ const PlaylistsPanel = () => {
   const setSearchers = (e) => {
     setSearcher(e);
   };
-  const editingHandler = () => {
-    setIsediting(!isEditing);
-  };
-
   if (loading) {
     return <Spinner type={"big"}></Spinner>;
   }

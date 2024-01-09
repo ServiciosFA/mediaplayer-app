@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../spotify";
@@ -7,12 +6,10 @@ import { currentTrackActions } from "../store/currentTrackSlice";
 const useSelectPlayList = (item) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
 
   //Establecer nueva lista seleccionada por id -establece en storage-Redirige a player
   const playListHandler = async (item) => {
     try {
-      setError(false);
       const response = await apiClient.get(
         item.type + "s/" + item.id + "/tracks"
       );
@@ -38,7 +35,6 @@ const useSelectPlayList = (item) => {
       navigate("/player", { state: { playList: data.items } });
     } catch (error) {
       console.log(error);
-      setError(true);
     }
   };
   return { playListHandler };
