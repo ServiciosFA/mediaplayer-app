@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PlaylistItem.scss";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 

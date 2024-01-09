@@ -1,7 +1,7 @@
 import apiClient from "../spotify";
 import { currentTrackActions } from "../store/currentTrackSlice";
 
-export const fetchTracks = async (location, setLoading, setError, dispatch) => {
+export const fetchTracks = async (location, setLoading, dispatch) => {
   try {
     setLoading(true);
     if (location?.state?.id) {
@@ -16,13 +16,13 @@ export const fetchTracks = async (location, setLoading, setError, dispatch) => {
         })
       );
       if (!data) throw new Error("Bad request");
-      setError(null);
+
       setLoading(false);
     } else {
     }
   } catch (error) {
     console.log(error);
-    setError(error.message);
+
     setLoading(false);
   }
 };

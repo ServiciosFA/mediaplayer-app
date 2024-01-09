@@ -51,7 +51,7 @@ const Library = () => {
 
   const addNewPlaylistHandler = async () => {
     try {
-      const response = await apiClient.post(`users/${user.id}/playlists`, {
+      await apiClient.post(`users/${user.id}/playlists`, {
         name: "New playlist",
         description: "New playlist description",
         public: false,

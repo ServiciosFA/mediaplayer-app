@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./SongDetails.scss";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useSelector } from "react-redux";
 import { fetchArtist, fetchTooglelikes } from "../../../functions/tracksUtils";
 import LikeToggle from "../../../ui/LikeToggle";
@@ -12,7 +10,6 @@ const SongDetails = (props) => {
   const [loading, setLoading] = useState(false);
 
   //API spotify no siempre devuelve los detalles de las tracks cuando los guardo en store
-  const hasDetail = currentTrack.releaseDate && currentTrack.artist;
 
   useEffect(() => {
     fetchArtist(setLoading, setLike, currentTrack.id);

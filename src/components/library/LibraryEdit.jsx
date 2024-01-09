@@ -51,10 +51,7 @@ const LibraryEdit = ({ setShowEdit, playlist, onEdit }) => {
     };
 
     try {
-      const response = await apiClient.put(
-        `playlists/${playlist.id}`,
-        updatedData
-      );
+      await apiClient.put(`playlists/${playlist.id}`, updatedData);
       dispatch(
         notificationActions.ACTIVE_NOTIFICATION({
           message: "Playlist edited",

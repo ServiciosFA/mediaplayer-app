@@ -15,11 +15,10 @@ const Player = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   //Peticion de tracks de un playList determinada
   useEffect(() => {
-    fetchTracks(location, setLoading, setError, dispatch);
+    fetchTracks(location, setLoading, dispatch);
   }, [dispatch, location]);
 
   //Setear tiempo para interfaz

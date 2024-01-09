@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./LibraryItem.scss";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../ui/Modal";
 import PanelButtons from "./PanelButtons";
 import DeleteWindow from "../../ui/DeleteWindow";
 import LibraryEdit from "./LibraryEdit";
-import apiClient from "../../spotify";
 
 const LibraryItem = ({
   playlist,

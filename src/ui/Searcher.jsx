@@ -45,7 +45,7 @@ const Searcher = ({ onClose, item }) => {
 
   const addHandler = async (trackiD) => {
     try {
-      const response = await apiClient.post(`/playlists/${item.id}/tracks`, {
+      await apiClient.post(`/playlists/${item.id}/tracks`, {
         uris: [`spotify:track:${trackiD}`],
       });
       dispatch(

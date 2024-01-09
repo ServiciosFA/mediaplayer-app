@@ -1,12 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "./Favorite.scss";
-
 import SearchBar from "../../ui/SearchBar";
 import { searcherList } from "../../functions/searcherUtils";
 import Spinner from "../../ui/Spinner";
 import { fetchTooglelikes } from "../../functions/tracksUtils";
 import apiClient from "../../spotify";
-
 import RowList from "../../ui/RowList";
 
 const Favorite = () => {
@@ -14,7 +12,6 @@ const Favorite = () => {
 
   const [favTracks, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
 
   //Peticion Api Lista de favoritos
   useEffect(() => {
@@ -25,7 +22,6 @@ const Favorite = () => {
         setData(response.data);
         setLoading(false);
       } catch (error) {
-        setError(true);
         console.log(error);
       }
     };

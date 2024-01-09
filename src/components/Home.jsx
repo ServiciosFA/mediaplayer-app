@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import "./Home.scss";
 import SearchBar from "../ui/SearchBar";
 import useDataRequest from "../hook/useDataRequest";
-
 import LayoutItem from "../ui/LayoutItem";
 import Spinner from "../ui/Spinner";
 

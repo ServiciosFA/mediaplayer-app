@@ -3,7 +3,6 @@ import "./Playlist.scss";
 import Time from "../../../functions/Time";
 import { useDispatch, useSelector } from "react-redux";
 import { currentTrackActions } from "../../../store/currentTrackSlice";
-import { timerSliceActions } from "../../../store/timerSilce";
 import PlaylistItem from "./PlaylistItem";
 
 const Playlist = (props) => {
