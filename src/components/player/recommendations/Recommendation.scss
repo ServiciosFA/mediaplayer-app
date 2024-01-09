@@ -2,9 +2,10 @@
 .recommendationListLayout {
   background-color: rgba(31, 50, 83, 0.596);
   border-radius: 10px;
-  padding: 1rem;
-  height: 50%;
-  overflow-y: scroll;
+  padding: 2rem;
+  height: 100%;
+  overflow-y: hidden;
+
   @include responsive(laptop) {
     display: none;
   }
@@ -28,7 +29,7 @@
 
   .recommendations {
     flex-wrap: wrap;
-
+    overflow-y: scroll;
     display: flex;
     height: 17rem;
     justify-content: flex-start;
