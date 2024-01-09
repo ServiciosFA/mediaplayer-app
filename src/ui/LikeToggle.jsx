@@ -5,11 +5,14 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const LikeToggle = ({ children, condition, onLikeHandler }) => {
   return condition ? (
-    <FavoriteIcon onClick={onLikeHandler} className="like"></FavoriteIcon>
+    <FavoriteIcon
+      onClick={onLikeHandler}
+      className="rowLike like"
+    ></FavoriteIcon>
   ) : (
     <FavoriteBorderOutlinedIcon
       onClick={onLikeHandler}
-      className="unLike"
+      className="rowLike unLike"
     ></FavoriteBorderOutlinedIcon>
   );
 };

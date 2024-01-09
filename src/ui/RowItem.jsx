@@ -6,6 +6,7 @@ import { fetchArtist } from "../functions/tracksUtils";
 import Spinner from "./Spinner";
 import { formatTime } from "../functions/timerUtils";
 import AddIcon from "@mui/icons-material/Add";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const RowItem = ({
   index,
@@ -29,25 +30,48 @@ const RowItem = ({
 
   return (
     <li className="rowItem">
+      <ReactTooltip
+        id="itemRow"
+        effect="solid"
+        place="bottom"
+        type="info"
+        globalEventOff="hover"
+        delayShow={800}
+        delayHide={0}
+      />
       <p className="rowNum">{index + 1}</p>
       <div className="rowName" onClick={() => onPlayrow(item, index)}>
         <img src={item.album.images[0].url} alt="" className="rowImages"></img>
         <div className="nametrackLayout">
-          <p className="frowTrack">{item.name}</p>
-          <span className="rowArtist">{item.artists[0].name}</span>
+          <p
+            className="rowTrack"
+            data-tooltip-id="itemRow"
+            data-tooltip-content={item.name}
+          >
+            {item.name}
+          </p>
+          <span
+            className="rowArtist"
+            data-tooltip-id="itemRow"
+            data-tooltip-content={item.artists[0].name}
+          >
+            {item.artists[0].name}
+          </span>
         </div>
       </div>
       <div className="buttonActionsContainer">
-        <div className="rowLike">
-          {loading ? (
-            <Spinner type="small"></Spinner>
-          ) : (
-            <LikeToggle
-              condition={like}
-              onLikeHandler={() => onLikeHandler()}
-            ></LikeToggle>
-          )}
-        </div>
+        {onAdd && (
+          <AddIcon className="rowAdd" onClick={() => onAdd(item.id)}></AddIcon>
+        )}
+
+        {loading ? (
+          <Spinner type="small"></Spinner>
+        ) : (
+          <LikeToggle
+            condition={like}
+            onLikeHandler={() => onLikeHandler()}
+          ></LikeToggle>
+        )}
         {onDelete && (
           <PlaylistRemoveIcon
             className="rowDelete"
@@ -55,9 +79,6 @@ const RowItem = ({
               onDelete(item.id);
             }}
           ></PlaylistRemoveIcon>
-        )}
-        {onAdd && (
-          <AddIcon className="rowAdd" onClick={() => onAdd(item.id)}></AddIcon>
         )}
       </div>
       <p className="timeTrack">{formatTime(itemTime)}</p>

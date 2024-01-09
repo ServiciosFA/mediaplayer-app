@@ -28,16 +28,9 @@ $color-font: rgb(253, 133, 90);
   }
   &:hover {
     background-color: $color-background-track-hover;
-    .buttonActionsContainer {
-      .rowLike {
-        display: block;
-      }
-      .rowDelete {
-        display: block;
-      }
-    }
   }
   .buttonActionsContainer {
+    gap: 1rem;
     display: flex;
     padding: 1rem;
     width: 5rem;
@@ -74,8 +67,9 @@ $color-font: rgb(253, 133, 90);
       }
     }
     .rowDelete {
-      display: none;
       flex: 1;
+      max-height: 2.5rem;
+      max-width: 2.5rem;
       text-align: center;
       height: fit-content;
       color: $color-background-icon;
@@ -91,13 +85,6 @@ $color-font: rgb(253, 133, 90);
         color: $color-font;
       }
     }
-
-    .rowLike {
-      display: none;
-      flex: 1;
-      text-align: center;
-      height: fit-content;
-    }
   }
 
   .rowNum {
@@ -110,6 +97,7 @@ $color-font: rgb(253, 133, 90);
     display: flex;
     gap: 3rem;
     flex: 8;
+    max-width: 30rem;
     &:hover {
       cursor: default;
     }
@@ -118,6 +106,7 @@ $color-font: rgb(253, 133, 90);
     }
     @include responsive(laptop) {
       flex: 7;
+      max-width: 20rem;
     }
 
     @include responsive(tablet) {
@@ -150,7 +139,8 @@ $color-font: rgb(253, 133, 90);
     .nametrackLayout {
       display: flex;
       flex-direction: column;
-
+      overflow: hidden;
+      max-width: 15rem;
       flex: 1;
       @include responsive(phone) {
         text-align: center;
@@ -158,21 +148,29 @@ $color-font: rgb(253, 133, 90);
       .rowTrack {
         font-size: large;
         font-weight: 300;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 15rem;
+        word-break: break-all;
+
         @include responsive(laptop) {
           font-size: medium;
           font-weight: 300;
+          max-width: 9rem;
         }
 
         @include responsive(tablet) {
           font-size: small;
           font-weight: 300;
+          max-width: 10rem;
         }
         @include responsive(phone) {
           font-size: smaller;
-          white-space: nowrap; // Prevent text wrapping
-          overflow: hidden; // Hide overflowing text
+          white-space: nowrap;
+          overflow: hidden;
           text-overflow: ellipsis;
-          width: 9rem;
+          max-width: 9rem;
           align-items: center;
           justify-content: center;
         }

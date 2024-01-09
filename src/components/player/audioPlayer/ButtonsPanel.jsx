@@ -10,6 +10,7 @@ import {
   updatePercentagexTime,
   updateTimexPercentage,
 } from "../../../functions/timerUtils";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 
 const ButtonsPanel = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
@@ -59,8 +60,29 @@ const ButtonsPanel = () => {
   };
   return (
     <div className="buttonsContainer">
-      <p className="album">{currentTrack.name}</p>
-      <p className="track">{currentTrack.artist}</p>
+      <ReactTooltip
+        id="itemPlayer"
+        effect="solid"
+        place="bottom"
+        type="info"
+        globalEventOff="hover"
+        delayShow={1000}
+        delayHide={0}
+      />
+      <p
+        className="album"
+        data-tooltip-id="itemPlayer"
+        data-tooltip-content={currentTrack.name}
+      >
+        {currentTrack.name}
+      </p>
+      <p
+        className="track"
+        data-tooltip-id="itemPlayer"
+        data-tooltip-content={currentTrack.artist}
+      >
+        {currentTrack.artist}
+      </p>
       <audio
         ref={audioRef}
         src={currentTrack?.previewTrack}

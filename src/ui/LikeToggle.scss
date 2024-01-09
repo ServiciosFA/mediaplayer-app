@@ -1,7 +1,13 @@
 $color-background: rgb(131, 130, 130);
 $color-font: rgb(243, 95, 41);
 
-.like {
+.rowLike {
+  display: none;
+  max-height: 2.5rem;
+  max-width: 2.5rem;
+  text-align: center;
+}
+.rowLike.like {
   color: $color-background;
 
   &:hover {
@@ -9,7 +15,7 @@ $color-font: rgb(243, 95, 41);
   }
   cursor: pointer;
 }
-.unLike {
+.rowLike.unLike {
   color: $color-background;
 
   &:hover {

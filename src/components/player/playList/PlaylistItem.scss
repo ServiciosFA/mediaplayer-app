@@ -27,16 +27,6 @@ $font-size-smaller: 0.7rem;
   }
 
   .etiqueta {
-    @include responsive(desktop) {
-      display: none;
-    }
-    @include responsive(laptop) {
-      display: none;
-    }
-    @include responsive(tablet) {
-    }
-    @include responsive(phone) {
-    }
     width: 13rem;
   }
   .itemPlaylistContainer {

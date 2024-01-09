@@ -24,7 +24,11 @@
     font-weight: 500;
     display: inline-block;
     align-items: center;
-    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15rem;
+    word-break: break-all;
     flex: 0.7;
 
     @include responsive(laptop) {
@@ -45,6 +49,11 @@
     font-size: medium;
     font-weight: 300;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 15rem;
+    word-break: break-all;
     @include responsive(laptop) {
       font-size: small;
       font-weight: 300;

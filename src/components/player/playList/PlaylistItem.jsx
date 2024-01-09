@@ -29,6 +29,8 @@ const PlaylistItem = ({
         place="bottom"
         type="info"
         globalEventOff="hover"
+        delayShow={1000}
+        delayHide={0}
         className="etiqueta"
       />
       <div className="itemPlaylistContainer">
