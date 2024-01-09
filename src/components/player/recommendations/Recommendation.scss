@@ -3,7 +3,8 @@
   background-color: rgba(31, 50, 83, 0.596);
   border-radius: 10px;
   padding: 1rem;
-  height: 19rem;
+  height: 50%;
+  overflow-y: scroll;
   @include responsive(laptop) {
     display: none;
   }
