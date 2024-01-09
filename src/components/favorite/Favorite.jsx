@@ -9,7 +9,6 @@ import RowList from "../../ui/RowList";
 
 const Favorite = () => {
   const [searcher, setSearcher] = useState("");
-
   const [favTracks, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
