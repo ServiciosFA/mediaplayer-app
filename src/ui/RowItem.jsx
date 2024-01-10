@@ -28,6 +28,15 @@ const RowItem = ({
     onLikeToggle(setLike, like, item.id);
   };
 
+  const renderSpinner = loading ? (
+    <Spinner type="small"></Spinner>
+  ) : (
+    <LikeToggle
+      condition={like}
+      onLikeHandler={() => onLikeHandler()}
+    ></LikeToggle>
+  );
+
   return (
     <li className="rowItem">
       <ReactTooltip
@@ -38,6 +47,13 @@ const RowItem = ({
         globalEventOff="hover"
         delayShow={800}
         delayHide={0}
+      />
+      <ReactTooltip
+        id="itemButton"
+        effect="solid"
+        place="bottom"
+        type="info"
+        globalEventOff="hover"
       />
       <p className="rowNum">{index + 1}</p>
       <div className="rowName" onClick={() => onPlayrow(item, index)}>
@@ -61,26 +77,27 @@ const RowItem = ({
       </div>
       <div className="buttonActionsContainer">
         {onAdd && (
-          <AddIcon className="rowAdd" onClick={() => onAdd(item.id)}></AddIcon>
+          <AddIcon
+            data-tooltip-id="itemButton"
+            data-tooltip-content="Add"
+            className="rowAdd"
+            onClick={() => onAdd(item.id)}
+          ></AddIcon>
         )}
 
-        {loading ? (
-          <Spinner type="small"></Spinner>
-        ) : (
-          <LikeToggle
-            condition={like}
-            onLikeHandler={() => onLikeHandler()}
-          ></LikeToggle>
-        )}
         {onDelete && (
           <PlaylistRemoveIcon
             className="rowDelete"
             onClick={() => {
               onDelete(item.id);
             }}
+            data-tooltip-id="itemButton"
+            data-tooltip-content="Delete"
           ></PlaylistRemoveIcon>
         )}
+        <div className="likeContainer">{renderSpinner}</div>
       </div>
+
       <p className="timeTrack">{formatTime(itemTime)}</p>
     </li>
   );

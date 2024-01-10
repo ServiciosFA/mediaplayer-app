@@ -25,8 +25,6 @@ $size-font-bigger: 4rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    object-fit: cover;
     .usernameText {
       font-size: $size-font-big;
       font-weight: 600;
@@ -50,9 +48,10 @@ $size-font-bigger: 4rem;
     .logo {
       border: 1px solid black;
       border-radius: 50%;
+      width: 12rem;
+      height: 12rem;
+      image-rendering: optimizeQuality;
       @include responsive(desktop) {
-        width: 15rem;
-        height: 15rem;
       }
       @include responsive(laptop) {
         width: 14rem;
