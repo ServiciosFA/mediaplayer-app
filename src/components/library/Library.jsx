@@ -18,7 +18,6 @@ const Library = () => {
   const [searcher, setSearcher] = useState("");
   const [playlists, setPlaylists] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [isEditing, setIsediting] = useState(false);
 
   useEffect(() => {
@@ -114,7 +113,7 @@ const Library = () => {
 
   if (loading) {
     return <Spinner type="big"></Spinner>;
-  } else if (error) return <p>{error}</p>;
+  }
 
   //Render
   return (
