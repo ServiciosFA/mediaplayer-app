@@ -1,22 +1,41 @@
 import React, { useEffect, useState } from "react";
 import "./SongDetails.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchArtist, fetchTooglelikes } from "../../../functions/tracksUtils";
 import LikeToggle from "../../../ui/LikeToggle";
+import { notificationActions } from "../../../store/notificationSlice";
 
 const SongDetails = (props) => {
   const currentTrack = useSelector((state) => state.currentTrack);
   const [like, setLike] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
 
   //API spotify no siempre devuelve los detalles de las tracks cuando los guardo en store
 
   useEffect(() => {
-    fetchArtist(setLoading, setLike, currentTrack.id);
-  }, [currentTrack, like]);
+    fetchArtist(setLoading, setLike, currentTrack.id, setError);
+    if (error)
+      dispatch(
+        notificationActions.ACTIVE_NOTIFICATION({
+          message: error || "An error occurred.",
+          type: "error",
+        })
+      );
+    setError(null);
+  }, [currentTrack, dispatch, error, like]);
 
   const onLikeHandler = (e) => {
-    fetchTooglelikes(setLike, like, currentTrack.id);
+    fetchTooglelikes(setLike, like, currentTrack.id, setError);
+    if (error)
+      dispatch(
+        notificationActions.ACTIVE_NOTIFICATION({
+          message: error || "An error occurred.",
+          type: "error",
+        })
+      );
+    setError(null);
   };
 
   return (

@@ -22,7 +22,7 @@ const RowItem = ({
 
   useEffect(() => {
     fetchArtist(setLoading, setLike, item.id);
-  }, [item]);
+  }, [item.id]);
 
   const onLikeHandler = () => {
     onLikeToggle(setLike, like, item.id);
@@ -95,7 +95,7 @@ const RowItem = ({
             data-tooltip-content="Delete"
           ></PlaylistRemoveIcon>
         )}
-        <div className="likeContainer">{renderSpinner}</div>
+        {!onAdd && <div className="likeContainer">{renderSpinner}</div>}
       </div>
 
       <p className="timeTrack">{formatTime(itemTime)}</p>

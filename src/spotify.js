@@ -5,7 +5,7 @@ const authEndpoint = "https://accounts.spotify.com/authorize?";
 const clientId = "7ec77ac5caf14da095c5e9b72f379393";
 const redirectUri = "http://localhost:3000/";
 const scopes =
-  " user-read-playback-state user-library-read playlist-read-private user-modify-playback-state user-follow-read user-library-modify user-top-read playlist-modify-public playlist-modify-private playlist-read-private ugc-image-upload playlist-read-collaborative";
+  "user-read-email user-read-playback-state user-library-read playlist-read-private user-modify-playback-state user-follow-read user-library-modify user-top-read playlist-modify-public playlist-modify-private playlist-read-private ugc-image-upload playlist-read-collaborative";
 export const loginEndpoint = `${authEndpoint}client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes}&response_type=token&show_dialog=true`;
 
 const apiClient = axios.create({ baseURL: "https://api.spotify.com/v1/" });

@@ -37,16 +37,23 @@ $size-font-bigger: 4rem;
     display: flex;
     max-width: 100%;
     width: 9rem;
-    align-items: center;
+
+    justify-content: center;
     flex-direction: column;
     gap: 5px;
+
     @include responsive(laptop) {
     }
     @include responsive(tablet) {
     }
     @include responsive(phone) {
     }
-    h4 {
+    .namePlaylist {
+      overflow-x: hidden;
+      text-overflow: ellipsis;
+      text-wrap: nowrap;
+      max-width: 9rem;
+      font-weight: 600;
       @include responsive(laptop) {
       }
       @include responsive(tablet) {
@@ -57,7 +64,7 @@ $size-font-bigger: 4rem;
       }
     }
     .imagesFavorite {
-      width: 8rem;
+      width: 9rem;
       height: 8rem;
       @include responsive(laptop) {
       }

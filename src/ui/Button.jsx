@@ -7,7 +7,6 @@ const Button = ({ styles, children, onClick, type }) => {
     if (!onClick) return;
     else onClick();
   };
-
   return (
     <button className={active} type={type} onClick={handlerClick}>
       {children}

@@ -9,8 +9,8 @@ import Notification from "../ui/Notification";
 const AppLayout = () => {
   return (
     <div className="layout">
-      {/*Hook useToken*/}
       <Notification></Notification>
+      {/*Hook useToken*/}
       <LocationInfo></LocationInfo>
       <RefreshToken></RefreshToken>
       <NavBar></NavBar>

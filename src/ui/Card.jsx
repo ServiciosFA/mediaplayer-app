@@ -2,15 +2,15 @@ import React, { useCallback, useEffect } from "react";
 import "./Card.scss";
 import CancelIcon from "@mui/icons-material/Cancel";
 
-const Card = ({ children, onClose, type }) => {
+const Card = ({ children, onClose, type, disabled }) => {
   const styleCard = `cardContainer ${type}`;
   const onKeyPressed = useCallback(
     (event) => {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !disabled) {
         onClose();
       }
     },
-    [onClose]
+    [disabled, onClose]
   );
   useEffect(() => {
     document.addEventListener("keydown", onKeyPressed);
@@ -20,7 +20,14 @@ const Card = ({ children, onClose, type }) => {
   }, [onKeyPressed]);
   return (
     <div className={styleCard} tabIndex={0} onKeyDown={onKeyPressed}>
-      <CancelIcon className="headCard" onClick={() => onClose()}></CancelIcon>
+      <button
+        disabled={disabled}
+        className="headCard"
+        onClick={() => onClose()}
+      >
+        <CancelIcon></CancelIcon>
+      </button>
+
       {children}
     </div>
   );

@@ -12,58 +12,139 @@ $size-font-bigger: 4rem;
 .loginContainer {
   width: 100%;
   height: 100%;
+  padding: 3rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-  gap: 1rem;
-
-  .imgContainer {
-    flex: 2;
+  gap: 3rem;
+  .userIntroductiion {
+    display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background-color: $color-background-2;
+    padding: 1rem;
+    border-radius: 10px;
+    @include responsive(desktop) {
+    }
+    @include responsive(laptop) {
+    }
+    @include responsive(tablet) {
+    }
+    @include responsive(phone) {
+    }
+    .userGuide {
+      font-size: $size-font-small;
+
+      @include responsive(laptop) {
+        font-size: $size-font-small;
+      }
+      @include responsive(tablet) {
+        font-size: $size-font-smaller;
+      }
+      @include responsive(phone) {
+        font-size: $size-font-smaller;
+      }
+    }
+    .userDatadownloadbutton {
+      background-color: $color-font-2;
+      padding: 1rem 2rem;
+      color: $color-font;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: $size-font-smaller;
+      text-align: center;
+      display: flex;
+      gap: 0.3rem;
+      .downloadIcon {
+      }
+      @include responsive(laptop) {
+        padding: 1rem;
+      }
+      @include responsive(tablet) {
+        font-weight: 400;
+        padding: 1rem;
+      }
+      @include responsive(phone) {
+        font-weight: 400;
+        padding: 1rem;
+      }
+    }
+  }
+
+  .perfilContainer {
+    flex: 1;
     gap: 1rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    .usernameText {
-      font-size: $size-font-big;
-      font-weight: 600;
-      @include responsive(desktop) {
+    justify-content: flex-end;
+    @include responsive(tablet) {
+      flex-direction: column;
+    }
+    @include responsive(phone) {
+      flex-direction: column;
+    }
+    .userPerfil {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      .usernameText {
         font-size: $size-font-big;
         font-weight: 600;
+        color: $color-background;
+        @include responsive(desktop) {
+          font-size: $size-font-normal;
+          font-weight: 600;
+        }
+        @include responsive(laptop) {
+          font-size: $size-font-normal;
+          font-weight: 600;
+        }
+        @include responsive(tablet) {
+          font-size: $size-font-normal;
+          font-weight: 500;
+        }
+        @include responsive(phone) {
+          font-size: $size-font-smaller;
+          font-weight: 500;
+        }
       }
-      @include responsive(laptop) {
-        font-size: $size-font-big;
-        font-weight: 600;
-      }
-      @include responsive(tablet) {
-        font-size: $size-font-normal;
-        font-weight: 500;
-      }
-      @include responsive(phone) {
-        font-size: $size-font-normal;
-        font-weight: 500;
+      .userItemDescription {
+        font-size: $size-font-small;
+        @include responsive(tablet) {
+          font-size: $size-font-small;
+          font-weight: 400;
+          color: rgb(201, 200, 200);
+        }
+        @include responsive(phone) {
+          font-size: $size-font-smaller;
+          font-weight: 400;
+        }
       }
     }
+
     .logo {
       border: 1px solid black;
       border-radius: 50%;
-      width: 12rem;
-      height: 12rem;
+      width: 10rem;
+      height: 10rem;
       image-rendering: optimizeQuality;
       @include responsive(desktop) {
       }
       @include responsive(laptop) {
-        width: 14rem;
-        height: 14rem;
+        width: 10rem;
+        height: 10rem;
       }
       @include responsive(tablet) {
-        width: 13rem;
-        height: 13rem;
+        width: 7rem;
+        height: 7rem;
       }
       @include responsive(phone) {
-        width: 11rem;
-        height: 11rem;
+        width: 5rem;
+        height: 5rem;
       }
     }
   }
@@ -71,23 +152,22 @@ $size-font-bigger: 4rem;
     flex: 1;
     .loginButton {
       background-color: $color-background-2;
-      padding: 1rem 10rem;
+      padding: 1rem 5rem;
       color: $color-font;
       border-radius: 30px;
       font-weight: 600;
       font-size: $size-font-small;
-      @include responsive(desktop) {
-        padding: 1rem 10rem;
-      }
       @include responsive(laptop) {
-        padding: 1rem 8rem;
       }
       @include responsive(tablet) {
-        padding: 1rem 7rem;
+        padding: 1rem 4rem;
       }
       @include responsive(phone) {
-        padding: 1rem 5rem;
+        padding: 1rem 1.5rem;
+        font-weight: 500;
+        font-size: $size-font-smaller;
       }
+
       &:hover {
         background-color: $color-background;
         color: $color-font;

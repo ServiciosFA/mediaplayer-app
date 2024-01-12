@@ -9,6 +9,7 @@ import Spinner from "../../ui/Spinner";
 import Button from "../../ui/Button";
 import apiClient from "../../spotify";
 import { notificationActions } from "../../store/notificationSlice";
+import { tokenActions } from "../../store/tokenSlice";
 
 const Library = () => {
   const navigate = useNavigate();
@@ -24,16 +25,34 @@ const Library = () => {
     const fetchPlaylists = async () => {
       try {
         setLoading(true);
+
         const response = await apiClient.get(`me/playlists`);
+        if (response.status === 403)
+          throw new Error(
+            "This account doesn't have permission on this page, please follow the login instructions. "
+          );
         setPlaylists(response.data);
         setLoading(false);
       } catch (error) {
         setLoading(false);
-        setError(error.message);
+        dispatch(
+          tokenActions.SET_TOKEN({
+            accessToken: null,
+            tokenType: null,
+            expiresIn: null,
+            expiresTime: null,
+          })
+        );
+        dispatch(
+          notificationActions.ACTIVE_NOTIFICATION({
+            message: error.response.data || "An error occurred.",
+            type: "error",
+          })
+        );
       }
     };
     fetchPlaylists();
-  }, [isEditing]);
+  }, [dispatch, isEditing]);
 
   const filterPlaylists = useMemo(() => {
     return !loading
@@ -51,11 +70,15 @@ const Library = () => {
 
   const addNewPlaylistHandler = async () => {
     try {
-      await apiClient.post(`users/${user.id}/playlists`, {
+      const response = await apiClient.post(`users/${user.id}/playlists`, {
         name: "New playlist",
         description: "New playlist description",
         public: false,
       });
+      if (response.status === 403)
+        throw new Error(
+          "This account doesn't have permission on this page, please follow the login instructions. "
+        );
       dispatch(
         notificationActions.ACTIVE_NOTIFICATION({
           message: "Playlist added",
@@ -65,12 +88,19 @@ const Library = () => {
       setIsediting(!isEditing);
     } catch (error) {
       dispatch(
+        tokenActions.SET_TOKEN({
+          accessToken: null,
+          tokenType: null,
+          expiresIn: null,
+          expiresTime: null,
+        })
+      );
+      dispatch(
         notificationActions.ACTIVE_NOTIFICATION({
-          message: "The playlist could not be added",
+          message: error.response.data || "An error occurred.",
           type: "error",
         })
       );
-      console.log(error);
     }
   };
 

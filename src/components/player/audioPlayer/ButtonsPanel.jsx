@@ -11,6 +11,7 @@ import {
   updateTimexPercentage,
 } from "../../../functions/timerUtils";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import { notificationActions } from "../../../store/notificationSlice";
 
 const ButtonsPanel = () => {
   const currentTrack = useSelector((state) => state.currentTrack);
@@ -27,6 +28,14 @@ const ButtonsPanel = () => {
       } else {
         audioRef.current.pause();
       }
+    }
+    if (!currentTrack?.previewTrack) {
+      dispatch(
+        notificationActions.ACTIVE_NOTIFICATION({
+          type: "info",
+          message: "This song doesn't have a preview track",
+        })
+      );
     }
     dispatch(timerSliceActions.PLAY_PAUSE(play));
   }, [play, currentTrack, dispatch, audioRef]);

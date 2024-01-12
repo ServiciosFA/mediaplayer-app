@@ -10,10 +10,8 @@ export const fetchRecommendationsData = async (
     if (!tracks || tracks.length === 0) {
       return;
     }
-
     setLoading(true);
     setError(null);
-
     //Get random number
     const getRandomInt = (max) => Math.floor(Math.random() * max);
 
@@ -43,6 +41,6 @@ export const fetchRecommendationsData = async (
     setRecommendations(recommendationsData);
   } catch (error) {
     setLoading(false);
-    setError(error.message);
+    setError(error.response.data);
   }
 };

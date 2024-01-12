@@ -18,14 +18,34 @@ $size-font-bigger: 4rem;
   overflow: scroll;
   flex-direction: column;
   align-items: center;
+  @include responsive(desktop) {
+  }
+  @include responsive(laptop) {
+  }
+  @include responsive(tablet) {
+  }
+  @include responsive(phone) {
+    align-items: flex-start;
+    padding: 2rem;
+  }
   .trendingList {
+    width: 100%;
+
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 0.3rem;
   }
   .titleTreding {
     font-size: larger;
     font-weight: 700;
-    align-self: self-start;
+    align-self: center;
+    background-color: $color-font-2;
+    padding: 0.3rem;
+    border-radius: 10px;
+    text-align: center;
+    @include responsive(phone) {
+      align-self: center;
+    }
   }
 }

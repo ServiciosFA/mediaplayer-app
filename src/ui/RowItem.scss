@@ -57,7 +57,7 @@ $color-font: rgb(253, 133, 90);
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
+      gap: 0.1rem;
     }
     @include responsive(phone) {
       padding: 0.5rem;
@@ -79,7 +79,7 @@ $color-font: rgb(253, 133, 90);
       }
     }
     .rowDelete {
-      flex: 0.3;
+      flex: 0.2;
       max-height: 2.7rem;
       max-width: 2.7rem;
       text-align: center;
@@ -88,8 +88,10 @@ $color-font: rgb(253, 133, 90);
       cursor: pointer;
 
       @include responsive(laptop) {
+        flex: 0.3;
       }
       @include responsive(tablet) {
+        flex: 0.3;
       }
       @include responsive(phone) {
         flex: 1.5;

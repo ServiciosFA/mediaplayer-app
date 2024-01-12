@@ -10,6 +10,7 @@ const initialState = {
   href: "",
   id: null,
   images: [],
+  followers: 0,
 };
 
 const currentUserSlice = createSlice({
@@ -21,12 +22,14 @@ const currentUserSlice = createSlice({
       state.href = action.payload.href;
       state.id = action.payload.id;
       state.images = action.payload.images;
+      state.followers = action.payload.followers.total;
     },
     RESET(state) {
       state.displayName = "";
       state.href = "";
       state.id = null;
       state.images = [];
+      state.followers = 0;
     },
   },
 });

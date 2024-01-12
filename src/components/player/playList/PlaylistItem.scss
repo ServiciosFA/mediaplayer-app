@@ -82,7 +82,7 @@ $font-size-smaller: 0.7rem;
     font-weight: 600;
     @include responsive(phone) {
       font-size: $font-size-smaller;
-      width: 1.5rem;
+      width: 2rem;
     }
   }
 }

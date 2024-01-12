@@ -1,9 +1,16 @@
 @import "../../styles/mixins.scss";
 .favoriteContainer {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
-  justify-content: flex-start;
-  overflow-y: scroll;
+  padding: 0 1rem 1rem 1rem;
+  gap: 1rem;
+  position: relative;
+  @include responsive(tablet) {
+    overflow-y: scroll;
+  }
+  @include responsive(phone) {
+    overflow-y: scroll;
+  }
 }

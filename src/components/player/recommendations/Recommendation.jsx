@@ -6,6 +6,7 @@ import { fetchRecommendationsData } from "../../../functions/recommendationUtils
 import Spinner from "../../../ui/Spinner";
 
 import RecommendedItem from "./RecommendedItem";
+import { notificationActions } from "../../../store/notificationSlice";
 
 const Recommendation = () => {
   const tracks = useSelector((state) => state.currentTrack.tracks);
@@ -16,7 +17,14 @@ const Recommendation = () => {
 
   useEffect(() => {
     fetchRecommendationsData(tracks, setLoading, setError, setRecommendations);
-  }, [tracks]);
+    if (error)
+      dispatch(
+        notificationActions.ACTIVE_NOTIFICATION({
+          message: error.response.data || "An error occurred.",
+          type: "error",
+        })
+      );
+  }, [dispatch, error, tracks]);
 
   const recommendedHandler = (value) => {
     dispatch(

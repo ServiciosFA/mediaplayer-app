@@ -51,7 +51,7 @@ const LibraryItem = ({
           alt=""
         ></img>
         <div className="descriptionFavorite">
-          <h4>{playlist.name}</h4>
+          <p className="namePlaylist">{playlist.name}</p>
           <p className="tracks">Songs {playlist.tracks.total}</p>
         </div>
       </div>

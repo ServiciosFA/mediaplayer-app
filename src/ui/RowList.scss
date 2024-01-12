@@ -1,8 +1,16 @@
+@import "../styles/mixins.scss";
 .rowList {
   display: flex;
   height: 100%;
   flex-direction: column;
   align-items: center;
-  padding-top: 1rem;
+  margin-top: 1rem;
   gap: 0.3rem;
+  overflow-y: scroll;
+  @include responsive(tablet) {
+    overflow-y: visible;
+  }
+  @include responsive(phone) {
+    overflow-y: visible;
+  }
 }

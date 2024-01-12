@@ -44,7 +44,6 @@ const PlaylistItem = ({
           {showTrack?.name}
         </p>
       </div>
-
       <p className="timelistItem">{minutos + ":" + segundos}</p>
     </li>
   );
