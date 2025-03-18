@@ -2,7 +2,7 @@ import axios from "axios";
 const authEndpoint = "https://accounts.spotify.com/authorize?";
 //Crear un usuario en la API SPOTIFY y cambiar valor de ID
 const clientId = "7ec77ac5caf14da095c5e9b72f379393";
-const redirectUri = "https://mediaplayer-app-eighty.vercel.app";
+const redirectUri = "https://mediaplayer-app-eighty.vercel.app/";
 const scopes = [
   "user-read-email",
   "user-read-playback-state",
