@@ -34,10 +34,10 @@ const NavBar = () => {
           <HomeIcon fontSize="medium"></HomeIcon>
           <p>Home</p>
         </NavLink>
-        <NavLink to="/trending" className={active}>
+        {/*<NavLink to="/trending" className={active}>
           <LocalFireDepartmentIcon fontSize="medium"></LocalFireDepartmentIcon>
           <p>Trending</p>
-        </NavLink>
+        </NavLink>*/}
         <NavLink to="/player" className={active}>
           <PlayArrowIcon fontSize="medium"></PlayArrowIcon>
           <p>Player</p>

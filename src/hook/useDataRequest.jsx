@@ -14,20 +14,25 @@ const useDataRequest = (url) => {
       try {
         setLoading(true);
         const response = await apiClient.get(url);
+        console.log(response);
         if (response.status === 403) throw new Error();
         setData(response.data);
         setLoading(false);
       } catch (error) {
         setError(true);
         setLoading(false);
-        dispatch(
-          tokenActions.SET_TOKEN({
-            accessToken: null,
-            tokenType: null,
-            expiresIn: null,
-            expiresTime: null,
-          })
-        );
+
+        // Verifica si el error es por token inválido
+        if (error.response?.status === 401 || error.response?.status === 403) {
+          dispatch(
+            tokenActions.SET_TOKEN({
+              accessToken: null,
+              tokenType: null,
+              expiresIn: null,
+              expiresTime: null,
+            })
+          );
+        }
         dispatch(
           notificationActions.ACTIVE_NOTIFICATION({
             message: error.response.data || "An error occurred.",

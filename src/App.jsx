@@ -13,7 +13,6 @@ import Player from "./pages/PlayerPage";
 import Settings from "./pages/SettingsPage";
 import "./App.scss";
 import { useSelector } from "react-redux";
-
 import Home from "./pages/HomePage";
 import AppLayout from "./pages/AppLayout";
 import PlaylistPage from "./pages/PlaylistPage";

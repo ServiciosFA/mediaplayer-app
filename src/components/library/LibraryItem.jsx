@@ -16,6 +16,7 @@ const LibraryItem = ({
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
+  console.log(playlist);
   const deleteHandler = async (playlistId) => {
     try {
       /* const response = await apiClient.delete(`playlists/${playlistId}`);
@@ -47,7 +48,11 @@ const LibraryItem = ({
       >
         <img
           className="imagesFavorite"
-          src={playlist?.images[0]?.url}
+          src={
+            playlist?.images?.length > 0
+              ? playlist.images[0].url
+              : "fallback-image-url"
+          }
           alt=""
         ></img>
         <div className="descriptionFavorite">

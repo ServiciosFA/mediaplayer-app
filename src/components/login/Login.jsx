@@ -60,6 +60,7 @@ const Login = () => {
     }
   }, [log, dispatch]);
 
+  //Elimina token de store cuando desloguea usuario
   const logout = () => {
     dispatch(
       tokenActions.SET_TOKEN({
@@ -117,12 +118,12 @@ const Login = () => {
         <div className="userPerfil">
           <p className="usernameText">{userName}</p>
           {followers ? (
-            <p className="userItemDescription">{followers} Followers</p>
+            <p className="userItemDescription">{`${followers} Followers`}</p>
           ) : (
             ""
           )}
           {followers ? (
-            <p className="userItemDescription">{playlist} Public playlists</p>
+            <p className="userItemDescription">{`${playlist} Public playlists`}</p>
           ) : (
             ""
           )}
@@ -130,6 +131,7 @@ const Login = () => {
       </div>
       <div className="buttonContainer">
         {!token?.accessToken ? (
+          //Redirige url a la definida en spotify.js para loguear usr
           <a href={loginEndpoint}>
             <div className="loginButton">Login </div>
           </a>
